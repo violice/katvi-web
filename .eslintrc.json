@@ -21,7 +21,8 @@
   ],
   "rules": {
     "import/prefer-default-export": 0,
-    "import/no-absolute-path": 0
+    "import/no-absolute-path": 0,
+    "react/forbid-prop-types": 0
   },
   "settings": {
     "import/resolver": {
