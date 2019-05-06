@@ -6,5 +6,12 @@ export default createGlobalStyle`
     padding: 0;
     height: 100%;
     width: 100%;
+    font-family: 'Montserrat';
+    font-size: 14px;
+  }
+
+  a {
+    color: #7D4CDB;
+    text-decoration: none;
   }
 `;
