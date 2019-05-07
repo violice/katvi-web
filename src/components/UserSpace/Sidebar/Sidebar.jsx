@@ -11,20 +11,20 @@ import { Container, SidebarItem, BottomItems } from './styles';
 const Sidebar = ({ pathname }) => (
   <Container>
     <Logo inverted />
-    <SidebarItem active={pathname.includes('/dashboard')} to="/dashboard">
+    <SidebarItem active={pathname.includes('/dashboard')} to="/secure/dashboard">
       <Dashboard />
         Dashboard
     </SidebarItem>
-    <SidebarItem active={pathname.includes('/projects')} to="/projects">
+    <SidebarItem active={pathname.includes('/projects')} to="/secure/projects">
       <FolderOpen />
         Projects
     </SidebarItem>
     <BottomItems>
-      <SidebarItem active={pathname.includes('/help')} to="/help">
+      <SidebarItem active={pathname.includes('/help')} to="/secure/help">
         <HelpOutline />
           Help
       </SidebarItem>
-      <SidebarItem active={pathname.includes('/account')} to="/account">
+      <SidebarItem active={pathname.includes('/account')} to="/secure/account">
         <AccountCircle />
           Account Name
       </SidebarItem>

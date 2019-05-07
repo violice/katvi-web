@@ -11,8 +11,11 @@ const App = () => (
       render={props => (
         <UserSpace {...props}>
           <Switch>
+            <Redirect exact from="/secure" to="/secure/dashboard" replace />
             <Route path="/secure/dashboard" render={() => 'Dashboard'} />
             <Route path="/secure/projects" render={() => 'Projects'} />
+            <Route path="/secure/help" render={() => 'Help'} />
+            <Route path="/secure/account" render={() => 'Account'} />
             <Redirect to="/not-found" replace />
           </Switch>
         </UserSpace>
