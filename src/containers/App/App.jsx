@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { Main, UserSpace, Projects } from 'components';
+import { Main, Secure, Projects } from 'components';
 
 const App = () => (
   <Switch>
@@ -9,7 +9,7 @@ const App = () => (
     <Route
       path="/secure"
       render={props => (
-        <UserSpace {...props}>
+        <Secure {...props}>
           <Switch>
             <Redirect exact from="/secure" to="/secure/dashboard" replace />
             <Route path="/secure/dashboard" render={() => 'Dashboard'} />
@@ -18,7 +18,7 @@ const App = () => (
             <Route path="/secure/account" render={() => 'Account'} />
             <Redirect to="/not-found" replace />
           </Switch>
-        </UserSpace>
+        </Secure>
       )}
     />
     <Route render={() => 'Not Found'} />

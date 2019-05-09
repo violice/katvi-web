@@ -7,7 +7,7 @@ const Container = styled.div`
   padding: 25px;
   display: flex;
   flex-direction: column;
-  & > img {
+  & > a {
     margin-bottom: 60px;
   }
 `;

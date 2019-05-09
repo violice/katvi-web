@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Sidebar } from './Sidebar';
 import { Container, Content } from './styles';
 
-const UserSpace = ({ children, location: { pathname } }) => (
+const Secure = ({ children, location: { pathname } }) => (
   <Container>
     <Sidebar pathname={pathname} />
     <Content>
@@ -13,9 +13,9 @@ const UserSpace = ({ children, location: { pathname } }) => (
   </Container>
 );
 
-UserSpace.propTypes = {
+Secure.propTypes = {
   children: PropTypes.node.isRequired,
   location: PropTypes.object.isRequired,
 };
 
-export default UserSpace;
+export default Secure;

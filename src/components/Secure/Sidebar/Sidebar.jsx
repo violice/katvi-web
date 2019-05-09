@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Dashboard, FolderOpen, HelpOutline, AccountCircle,
 } from 'rmdi';
@@ -10,7 +11,9 @@ import { Container, SidebarItem, BottomItems } from './styles';
 
 const Sidebar = ({ pathname }) => (
   <Container>
-    <Logo inverted />
+    <Link to="/secure">
+      <Logo inverted />
+    </Link>
     <SidebarItem active={pathname.includes('/dashboard')} to="/secure/dashboard">
       <Dashboard />
         Dashboard
