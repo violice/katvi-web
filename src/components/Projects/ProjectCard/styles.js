@@ -5,6 +5,10 @@ const Container = styled.div`
   height: 230px;
   box-shadow: 0 0 10px rgba(0,0,0,.15);
   border-radius: 5px;
+  &:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,.25);
+    cursor: pointer;
+  }
 `;
 
 const Top = styled.div`
