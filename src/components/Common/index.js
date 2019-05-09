@@ -3,3 +3,4 @@ export { Modal } from './Modal';
 export { Button } from './Button';
 export { Input } from './Input';
 export { Logo } from './Logo';
+export { TextArea } from './TextArea';

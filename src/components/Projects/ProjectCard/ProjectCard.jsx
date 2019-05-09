@@ -1,23 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Container, Top, Image, Text, Header, Description, Bottom,
 } from './styles';
 
 const ProjectCard = () => (
-  <Container>
-    <Top>
-      <Image />
-      <Text>
-        <Header>Project 1</Header>
-        <Description>
-        The description of super
-        amazing project
-        </Description>
-      </Text>
-    </Top>
-    <Bottom />
-  </Container>
+  <Link to="/secure/projects/1">
+    <Container>
+      <Top>
+        <Image />
+        <Text>
+          <Header>Project 1</Header>
+          <Description>
+            The description of super
+            amazing project
+          </Description>
+        </Text>
+      </Top>
+      <Bottom />
+    </Container>
+  </Link>
 );
 
 export default ProjectCard;
