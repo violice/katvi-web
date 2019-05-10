@@ -13,12 +13,12 @@ const Select = ({
 }) => {
   const menuRef = useRef(null);
   const [opened, setOpened] = useState(false);
-  const onDocumentClick = (e) => {
-    if (opened && menuRef.current !== e.target) {
-      setOpened(false);
-    }
-  };
   useEffect(() => {
+    const onDocumentClick = (e) => {
+      if (opened && menuRef.current !== e.target) {
+        setOpened(false);
+      }
+    };
     document.addEventListener('click', onDocumentClick);
     return () => {
       document.removeEventListener('click', onDocumentClick);
