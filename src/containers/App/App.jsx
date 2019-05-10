@@ -7,6 +7,7 @@ import {
   Project,
   Projects,
   Board,
+  NotFound,
 } from 'components';
 
 const App = () => (
@@ -42,7 +43,7 @@ const App = () => (
         </Secure>
       )}
     />
-    <Route render={() => 'Not Found'} />
+    <Route component={NotFound} />
   </Switch>
 );
 

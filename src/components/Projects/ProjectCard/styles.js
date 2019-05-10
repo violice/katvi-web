@@ -45,7 +45,6 @@ const Header = styled.div`
 `;
 
 const Description = styled.div`
-  font-size: 16px;
   font-weight: 500;
   color: #ffffff;
 `;

@@ -8,7 +8,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Montserrat';
-    font-size: 14px;
+    font-size: 16px;
   }
   
   #root {
