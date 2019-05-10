@@ -15,18 +15,24 @@ const Top = styled.div`
   height: 110px;
   padding: 30px;
   background-color: #7D4CDB;
-  border-radius: 5px 5px 0px 0px
+  border-radius: 5px 5px 0px 0px;
   display: flex;
   align-items: center;
 `;
 
-const Image = styled.div`
+const Thumb = styled.div`
   width: 64px;
   min-width: 64px;
   height: 64px;
-  background-color: #C4C4C4;
+  background-color: #ffffff;
   border-radius: 5px;
   margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 32px;
+  color: #7D4CDB;
 `;
 
 const Text = styled.div``;
@@ -49,5 +55,5 @@ const Bottom = styled.div`
 `;
 
 export {
-  Container, Top, Image, Text, Header, Description, Bottom,
+  Container, Top, Thumb, Text, Header, Description, Bottom,
 };

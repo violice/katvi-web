@@ -20,5 +20,6 @@ export default createGlobalStyle`
   a {
     color: #7D4CDB;
     text-decoration: none;
+    display: inline-flex;
   }
 `;

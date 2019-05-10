@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import {
-  Container, Top, Image, Text, Header, Description, Bottom,
+  Container, Top, Thumb, Text, Header, Description, Bottom,
 } from './styles';
 
 const ProjectCard = () => (
   <Link to="/secure/projects/1">
     <Container>
       <Top>
-        <Image />
+        <Thumb>P</Thumb>
         <Text>
           <Header>Project 1</Header>
           <Description>

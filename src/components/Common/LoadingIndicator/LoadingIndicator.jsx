@@ -1,3 +1,12 @@
 import React from 'react';
 
-export default () => <div>Loading</div>;
+import { Container, Circle } from './styles';
+
+const LoadingIndicator = () => (
+  <Container>
+    <Circle />
+    <Circle />
+  </Container>
+);
+
+export default LoadingIndicator;

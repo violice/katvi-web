@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import { Sidebar } from './Sidebar';
 import { Container, Content } from './styles';
 
-const Secure = ({ children, location: { pathname } }) => (
+const Project = ({ children, location: { pathname } }) => (
   <Container>
-    {!pathname.includes('projects/') && <Sidebar pathname={pathname} />}
+    <Sidebar pathname={pathname} />
     <Content>
       {children}
     </Content>
   </Container>
 );
 
-Secure.propTypes = {
+Project.propTypes = {
   children: PropTypes.node.isRequired,
   location: PropTypes.object.isRequired,
 };
 
-export default Secure;
+export default Project;

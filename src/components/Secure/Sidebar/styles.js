@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const Container = styled.div`
 const SidebarItem = styled(Link)`
   font-weight: 500;
   font-size: 18px;
-  color: #ffffff;
+  color: ${props => (props.active ? '#6FFFB0' : '#ffffff')};
   display: flex;
   align-items: center;
   &:not(:last-child) {
@@ -24,12 +24,6 @@ const SidebarItem = styled(Link)`
   & > svg {
     margin-right: 15px;
   }
-  ${props => props.active && css`
-    color: #6FFFB0;
-    & > svg > path {
-      fill: #6FFFB0;
-    }
-  `}
 `;
 
 const BottomItems = styled.div`

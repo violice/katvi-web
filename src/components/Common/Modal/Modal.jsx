@@ -14,7 +14,7 @@ const Modal = ({
 }) => {
   useEffect(() => {
     if (opened) {
-      ROOT_NODE.style.filter = 'blur(5px)';
+      ROOT_NODE.style.filter = 'blur(3px)';
     }
   }, [opened]);
   if (opened) {

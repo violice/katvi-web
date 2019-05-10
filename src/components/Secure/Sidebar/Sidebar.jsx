@@ -12,7 +12,7 @@ import { Container, SidebarItem, BottomItems } from './styles';
 const Sidebar = ({ pathname }) => (
   <Container>
     <Link to="/secure">
-      <Logo inverted />
+      <Logo type="inverted" />
     </Link>
     <SidebarItem active={pathname.includes('/dashboard')} to="/secure/dashboard">
       <Dashboard />
