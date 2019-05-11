@@ -12,7 +12,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.0",
+    "react-scripts": "^3.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "rmdi": "^1.0.1",
@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rimraf build && react-scripts build",
+    "deploy": "rimraf build && react-scripts build && firebase deploy --only hosting",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -45,6 +46,7 @@
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "rimraf": "^2.6.3"
   }
 }
