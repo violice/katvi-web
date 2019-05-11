@@ -7,7 +7,7 @@ export default createGlobalStyle`
     overflow: hidden;
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat';
+    font-family: Montserrat, Roboto, Segoe UI, Arial, sans-serif;
     font-size: 16px;
   }
   
