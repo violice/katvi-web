@@ -5,7 +5,7 @@ import { Sidebar } from './Sidebar';
 import { Container, Content } from './styles';
 
 const Secure = ({ children, location: { pathname } }) => (
-  <Container>
+  <Container sidebar={!pathname.includes('projects/')}>
     {!pathname.includes('projects/') && <Sidebar pathname={pathname} />}
     <Content>
       {children}

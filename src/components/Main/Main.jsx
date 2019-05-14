@@ -66,7 +66,7 @@ const FEATURES = [
 ];
 
 const Main = ({ location: { pathname }, history: { replace } }) => (
-  <>
+  <div style={{ overflow: 'auto', height: '100%' }}>
     <Header>
       <Container>
         <Link to="/">
@@ -141,7 +141,7 @@ const Main = ({ location: { pathname }, history: { replace } }) => (
     </Footer>
     <LoginModal opened={pathname.includes('login')} onClose={() => replace('/')} />
     <RegistrationModal opened={pathname.includes('registration')} onClose={() => replace('/')} />
-  </>
+  </div>
 );
 
 Main.propTypes = {
