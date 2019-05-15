@@ -15,12 +15,13 @@ const Modal = ({
   useEffect(() => {
     if (opened) {
       ROOT_NODE.style.filter = 'blur(3px)';
+    } else if (MODAL_NODE.children.length === 0) {
+      ROOT_NODE.style.filter = 'none';
     }
   }, [opened]);
   if (opened) {
     return ReactDOM.createPortal(
       <Overlay onClick={() => {
-        ROOT_NODE.style.filter = 'none';
         onClose();
       }}
       >
