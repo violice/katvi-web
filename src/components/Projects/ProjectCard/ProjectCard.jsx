@@ -5,16 +5,15 @@ import {
   Container, Top, Thumb, Text, Header, Description, Bottom,
 } from './styles';
 
-const ProjectCard = () => (
-  <Link to="/secure/projects/1">
+const ProjectCard = ({ project: { id, name, description } }) => (
+  <Link to={`/secure/projects/${id}`}>
     <Container>
       <Top>
-        <Thumb>P</Thumb>
+        <Thumb>{name.split(' ').map(word => word[0].toUpperCase()).join(' ')}</Thumb>
         <Text>
-          <Header>Project 1</Header>
+          <Header>{name}</Header>
           <Description>
-            The description of super
-            amazing project
+            {description}
           </Description>
         </Text>
       </Top>

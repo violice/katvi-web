@@ -11,11 +11,16 @@ const Container = styled.div`
     margin-top: 15px;
     margin-bottom: 30px;
   }
-  & > input {
-    margin-bottom: 20px;
-  }
-  & > button {
-    margin-top: 20px;
+  form { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > div {
+      margin-bottom: 20px;
+    }
+    & > button {
+      margin-top: 20px;
+    }
   }
 `;
 

@@ -14,7 +14,12 @@ const Header = styled.div`
 `;
 
 const Content = styled.div`
-
+  & > a {
+    margin-bottom: 20px;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 `;
 
 export { Container, Header, Content };

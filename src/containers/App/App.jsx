@@ -1,17 +1,19 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { Projects } from 'containers';
 import {
   Main,
   Secure,
   Project,
-  Projects,
   Board,
   NotFound,
 } from 'components';
 
 const App = () => (
   <Switch>
+    {document.cookie.includes('katvi-token') && <Redirect exact from="/" to="/secure/dashboard" replace />}
+    {!document.cookie.includes('katvi-token') && <Redirect from="/secure" to="/" replace />}
     <Route exact path={['/', '/login', '/registration']} component={Main} />
     <Route
       path="/secure"

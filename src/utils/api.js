@@ -1,6 +1,9 @@
 import Axios from 'axios';
 
-const baseUrl = process.env.REACT_APP_BASE_API_URL;
+const AxiosInstance = Axios.create({
+  baseURL: `${process.env.REACT_APP_BASE_API_URL}/`,
+  withCredentials: true,
+});
 
 const createStringParams = (params = {}) => {
   if (Object.keys(params).length === 0) {
@@ -10,16 +13,6 @@ const createStringParams = (params = {}) => {
     .map(key => `${key}=${params[key]}`)
     .join('&');
   return `?${stringParams}`;
-};
-
-const makeConfig = (type = 'application/json') => {
-  const token = localStorage.getItem('token');
-  return {
-    headers: {
-      'Content-Type': type,
-      'x-access-token': token,
-    },
-  };
 };
 
 const throwError = (response) => {
@@ -35,7 +28,7 @@ const throwError = (response) => {
 export default {
   get: async (url, params) => {
     try {
-      const { data } = await Axios.get(`${baseUrl}/${url}${createStringParams(params)}`, makeConfig());
+      const { data } = await AxiosInstance.get(`${url}${createStringParams(params)}`);
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -43,7 +36,7 @@ export default {
   },
   post: async (url, body) => {
     try {
-      const { data } = await Axios.post(`${baseUrl}/${url}`, body, makeConfig());
+      const { data } = await AxiosInstance.post(url, body);
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -51,7 +44,7 @@ export default {
   },
   patch: async (url, body) => {
     try {
-      const { data } = await Axios.patch(`${baseUrl}/${url}`, body, makeConfig());
+      const { data } = await Axios.patch(url, body);
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -59,7 +52,7 @@ export default {
   },
   delete: async (url) => {
     try {
-      const { data } = await Axios.delete(`${baseUrl}/${url}`, makeConfig());
+      const { data } = await Axios.delete(url);
       return data;
     } catch ({ response }) {
       return throwError(response);

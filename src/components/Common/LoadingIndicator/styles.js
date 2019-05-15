@@ -9,8 +9,8 @@ const Circle = styled.div`
 
   @keyframes lds-ripple {
     0% {
-      top: 28px;
-      left: 28px;
+      top: ${props => (props.size.split('px')[0] - 8) / 2}px;
+      left: ${props => (props.size.split('px')[0] - 8) / 2}px;
       width: 0;
       height: 0;
       opacity: 1;
@@ -18,8 +18,8 @@ const Circle = styled.div`
     100% {
       top: -1px;
       left: -1px;
-      width: 58px;
-      height: 58px;
+      width: ${props => props.size.split('px')[0] - 6}px;
+      height: ${props => props.size.split('px')[0] - 6}px;
       opacity: 0;
     }
   }
@@ -28,8 +28,8 @@ const Circle = styled.div`
 const Container = styled.div`
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: ${props => props.size};
+  height: ${props => props.size};
   & div:nth-child(2) {
     animation-delay: -0.5s;
   }

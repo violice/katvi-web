@@ -21,4 +21,5 @@ export default createGlobalStyle`
     text-decoration: none;
     display: inline-flex;
   }
+}
 `;

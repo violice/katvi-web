@@ -6,7 +6,8 @@ import { ProjectCard } from './ProjectCard';
 import { AddProject } from './AddProject';
 import { Container, Header, Content } from './styles';
 
-const Projects = () => {
+const Projects = ({ projects }) => {
+  console.log(projects);
   const [opened, setOpened] = useState(false);
   return (
     <Container>
@@ -15,7 +16,7 @@ const Projects = () => {
         <Button onClick={() => setOpened(true)}>Add Project</Button>
       </Header>
       <Content>
-        <ProjectCard />
+        {projects.map(project => (<ProjectCard project={project} />))}
       </Content>
       <AddProject opened={opened} onClose={() => setOpened(false)} />
     </Container>
