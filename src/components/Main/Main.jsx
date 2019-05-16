@@ -72,7 +72,10 @@ const Main = ({ location: { pathname }, history: { replace } }) => (
         <Link to="/">
           <Logo />
         </Link>
-        <StyledLink to="/login">Log In / Sign Up</StyledLink>
+        {document.cookie.includes('katvi-token')
+          ? <StyledLink to="/secure/dashboard">Dashboard</StyledLink>
+          : <StyledLink to="/login">Log In / Sign Up</StyledLink>
+        }
       </Container>
     </Header>
     <Hero>

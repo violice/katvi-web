@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Button } from 'components/Common';
 
@@ -7,7 +8,6 @@ import { AddProject } from './AddProject';
 import { Container, Header, Content } from './styles';
 
 const Projects = ({ projects }) => {
-  console.log(projects);
   const [opened, setOpened] = useState(false);
   return (
     <Container>
@@ -16,11 +16,15 @@ const Projects = ({ projects }) => {
         <Button onClick={() => setOpened(true)}>Add Project</Button>
       </Header>
       <Content>
-        {projects.map(project => (<ProjectCard project={project} />))}
+        {projects.map(project => (<ProjectCard key={project.id} project={project} />))}
       </Content>
       <AddProject opened={opened} onClose={() => setOpened(false)} />
     </Container>
   );
+};
+
+Projects.propTypes = {
+  projects: PropTypes.array.isRequired,
 };
 
 export default Projects;

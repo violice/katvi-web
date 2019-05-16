@@ -44,15 +44,21 @@ const BOARDS = [
   },
 ];
 
-const Sidebar = ({ pathname }) => (
+const Sidebar = ({ pathname, projects, project }) => (
   <Container>
     <Left>
       <Link to="/secure">
         <Logo type="short" size={{ width: '48px', height: '64px' }} />
       </Link>
-      <Thumb active={pathname.includes('/projects/1')} to="/secure/projects/1">P</Thumb>
-      <Thumb active={pathname.includes('/projects/2')} to="/secure/projects/2">EU</Thumb>
-      <Thumb active={pathname.includes('/projects/3')} to="/secure/projects/3">EA</Thumb>
+      {projects.slice(0, 5).map(({ id, name }) => (
+        <Thumb
+          key={id}
+          active={pathname.includes(`/projects/${id}`)}
+          to={`/secure/projects/${id}`}
+        >
+          {name.split(' ').map(word => word[0].toUpperCase()).join(' ')}
+        </Thumb>
+      ))}
       <Link to="/secure/projects">
         <MoreHoriz size="48" color="white" />
       </Link>
@@ -67,7 +73,7 @@ const Sidebar = ({ pathname }) => (
     </Left>
     <Right>
       <ProjectHeader>
-        Project
+        {project.name}
         <Settings />
       </ProjectHeader>
       <Select items={BOARDS} labelKey="label" valueKey="value" iconKey="icon" value={{ ...BOARDS[0], icon: ViewList }} />
@@ -101,6 +107,8 @@ const Sidebar = ({ pathname }) => (
 
 Sidebar.propTypes = {
   pathname: PropTypes.string.isRequired,
+  projects: PropTypes.array.isRequired,
+  project: PropTypes.object.isRequired,
 };
 
 export default Sidebar;

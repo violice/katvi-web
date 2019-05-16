@@ -4,14 +4,12 @@ import { useApi } from 'utils';
 import { Projects } from 'components';
 import { LoadingIndicator } from 'components/Common';
 
-const ProjectContainer = () => {
-  const [{ data, loading }] = useApi({ url: 'project' });
+const ProjectsContainer = () => {
+  const [{ data, loading }] = useApi({ url: 'project' }, { loading: true });
 
   if (loading) return <LoadingIndicator />;
-
-  if (!data) return null;
 
   return <Projects projects={data} />;
 };
 
-export default ProjectContainer;
+export default ProjectsContainer;

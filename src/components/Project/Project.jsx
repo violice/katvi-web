@@ -4,9 +4,18 @@ import PropTypes from 'prop-types';
 import { Sidebar } from './Sidebar';
 import { Container, Content } from './styles';
 
-const Project = ({ children, location: { pathname } }) => (
+const Project = ({
+  children,
+  pathname,
+  projects,
+  project,
+}) => (
   <Container>
-    <Sidebar pathname={pathname} />
+    <Sidebar
+      pathname={pathname}
+      projects={projects}
+      project={project}
+    />
     <Content>
       {children}
     </Content>
@@ -15,7 +24,9 @@ const Project = ({ children, location: { pathname } }) => (
 
 Project.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.object.isRequired,
+  pathname: PropTypes.string.isRequired,
+  projects: PropTypes.array.isRequired,
+  project: PropTypes.object.isRequired,
 };
 
 export default Project;
