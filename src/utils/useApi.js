@@ -59,11 +59,13 @@ const useApi = (initParams, initState = {}) => {
     data: initState.data || DEFAULT_STATE.data,
   });
 
+  const refresh = JSON.stringify(initParams);
+
   useEffect(() => {
     if (initParams) {
       request(dispatch)(initParams);
     }
-  }, [JSON.stringify(initParams)]);
+  }, [refresh]);
 
   return [state, request(dispatch)];
 };

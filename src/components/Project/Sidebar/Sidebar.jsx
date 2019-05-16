@@ -54,7 +54,8 @@ const Sidebar = ({ pathname, projects, project }) => (
         <Thumb
           key={id}
           active={pathname.includes(`/projects/${id}`)}
-          to={`/secure/projects/${id}`}
+          to={`/secure/projects/${id}/board`}
+          // TODO: use current latest path part (board, tags, settings, etc.)
         >
           {name.split(' ').map(word => word[0].toUpperCase()).join(' ')}
         </Thumb>

@@ -12,4 +12,4 @@ const ProjectsContainer = () => {
   return <Projects projects={data} />;
 };
 
-export default ProjectsContainer;
+export default React.memo(ProjectsContainer);

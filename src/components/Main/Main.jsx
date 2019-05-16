@@ -142,7 +142,7 @@ const Main = ({ location: { pathname }, history: { replace } }) => (
       </Link>
       <Copyright>© Copyright 2019. All rights reserved.</Copyright>
     </Footer>
-    <LoginModal opened={pathname.includes('login')} onClose={() => replace('/')} />
+    {pathname.includes('login') && <LoginModal onClose={() => replace('/')} />}
     <RegistrationModal opened={pathname.includes('registration')} onClose={() => replace('/')} />
   </div>
 );

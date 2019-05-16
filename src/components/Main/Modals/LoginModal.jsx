@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -22,11 +22,11 @@ const validationSchema = Yup.object().shape({
     .required('Please enter a password'),
 });
 
-const LoginModal = ({ opened, onClose }) => {
+const LoginModal = ({ onClose }) => {
   const [{ loading }, request] = useApi();
 
   return (
-    <Modal opened={opened} onClose={onClose}>
+    <Modal opened onClose={onClose}>
       <Container>
         <Header>
           Log In to
@@ -57,7 +57,6 @@ const LoginModal = ({ opened, onClose }) => {
 };
 
 LoginModal.propTypes = {
-  opened: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

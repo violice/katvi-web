@@ -39,4 +39,4 @@ ProjectContainer.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default ProjectContainer;
+export default React.memo(ProjectContainer);

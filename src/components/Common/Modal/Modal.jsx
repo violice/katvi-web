@@ -18,6 +18,11 @@ const Modal = ({
     } else if (MODAL_NODE.children.length === 0) {
       ROOT_NODE.style.filter = 'none';
     }
+    return () => {
+      if (MODAL_NODE.children.length === 1) {
+        ROOT_NODE.style.filter = 'none';
+      }
+    };
   }, [opened]);
   if (opened) {
     return ReactDOM.createPortal(
