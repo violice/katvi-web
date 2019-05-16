@@ -23,21 +23,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginModal = ({ opened, onClose }) => {
-  const [{
-    loading,
-    data,
-    reset,
-  }, Api] = useApi();
-
-  useEffect(() => {
-    reset();
-  }, [opened]);
-
-  // useEffect(() => {
-  //   if (data) {
-  //     onClose();
-  //   }
-  // }, [data]);
+  const [{ loading }, request] = useApi();
 
   return (
     <Modal opened={opened} onClose={onClose}>
@@ -51,7 +37,7 @@ const LoginModal = ({ opened, onClose }) => {
           validationSchema={validationSchema}
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
-            Api({
+            request({
               method: 'post',
               url: 'login',
               body: values,

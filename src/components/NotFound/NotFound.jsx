@@ -15,7 +15,7 @@ const NotFound = () => (
   <Container>
     <Header>Page Not Found</Header>
     <Image src={notFound} alt="notFound" />
-    <Footer to="/">
+    <Footer to={document.cookie.includes('katvi-token') ? '/secure' : '/'}>
         Back to
       <Logo />
     </Footer>

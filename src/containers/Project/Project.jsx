@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { useApi } from 'utils';
 import { Project } from 'components';
@@ -14,6 +15,10 @@ const ProjectContainer = ({
   const [{ data: project, loading: projectLoading }] = useApi({ url: `project/${id}` }, { loading: true });
 
   if (projectsLoading || projectLoading) return <LoadingIndicator />;
+
+  if (!project) {
+    return <Redirect to="/not-found" />;
+  }
 
   const ProjectProps = {
     pathname,

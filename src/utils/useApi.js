@@ -1,32 +1,26 @@
-import { useState, useReducer, useEffect } from 'react';
-import api from './api';
+import { useReducer, useEffect } from 'react';
+import Api from './api';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_INIT':
+    case 'REQUEST':
       return {
         ...state,
         loading: true,
         error: false,
       };
-    case 'FETCH_SUCCESS':
+    case 'REQUEST_SUCCESS':
       return {
         ...state,
         loading: false,
         error: false,
         data: action.payload,
       };
-    case 'FETCH_ERROR':
+    case 'REQUEST_ERROR':
       return {
         ...state,
         loading: false,
         error: action.payload,
-      };
-    case 'RESET':
-      return {
-        loading: false,
-        error: false,
-        data: null,
       };
     default:
       return state;
@@ -39,71 +33,39 @@ const DEFAULT_STATE = {
   data: null,
 };
 
-const useApi = (initParams, initState = {}) => {
-  const [params, setParams] = useState(initParams);
+const request = dispatch => async (params) => {
+  dispatch({ type: 'REQUEST' });
 
+  const {
+    method = 'get',
+    url,
+    queryParams,
+    body,
+  } = params;
+
+  try {
+    const data = await Api[method](url, body || queryParams);
+
+    dispatch({ type: 'REQUEST_SUCCESS', payload: data });
+  } catch (error) {
+    dispatch({ type: 'REQUEST_ERROR', payload: error });
+  }
+};
+
+const useApi = (initParams, initState = {}) => {
   const [state, dispatch] = useReducer(reducer, {
     loading: initState.loading || DEFAULT_STATE.loading,
     error: initState.error || DEFAULT_STATE.error,
     data: initState.data || DEFAULT_STATE.data,
   });
 
-  const reset = () => dispatch({ type: 'RESET' });
-
   useEffect(() => {
-    let canceled = false;
-
-    const fetch = async () => {
-      dispatch({ type: 'FETCH_INIT' });
-
-      const {
-        method,
-        url,
-        queryParams,
-        body,
-      } = params;
-
-      let data;
-
-      try {
-        switch (method) {
-          case 'post':
-            data = await api.post(url, body);
-            break;
-          case 'patch':
-            data = await api.patch(url, body);
-            break;
-          case 'delete':
-            data = await api.delete(url);
-            break;
-          default:
-            data = await api.get(url, queryParams);
-            break;
-        }
-
-        if (!canceled) {
-          dispatch({ type: 'FETCH_SUCCESS', payload: data });
-        }
-      } catch (error) {
-        if (!canceled) {
-          dispatch({ type: 'FETCH_ERROR', payload: error });
-        }
-      }
-    };
-
-    if (params) {
-      fetch();
+    if (initParams) {
+      request(dispatch)(initParams);
     }
+  }, [JSON.stringify(initParams)]);
 
-    return () => {
-      canceled = true;
-    };
-  }, [params]);
-
-  return [{
-    ...state,
-    reset,
-  }, setParams];
+  return [state, request(dispatch)];
 };
 
 export default useApi;
