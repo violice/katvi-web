@@ -10,7 +10,7 @@ const ProjectCard = ({ project: { id, name, description } }) => (
   <Link to={`/secure/projects/${id}`}>
     <Container>
       <Top>
-        <Thumb>{name.split(' ').map(word => word[0].toUpperCase()).join(' ')}</Thumb>
+        <Thumb>{name.split(' ').slice(0, 2).map(word => word[0].toUpperCase()).join('')}</Thumb>
         <Text>
           <Header>{name}</Header>
           <Description>

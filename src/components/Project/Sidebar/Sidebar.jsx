@@ -26,25 +26,9 @@ import {
   SidebarItem,
 } from './styles';
 
-const BOARDS = [
-  {
-    label: 'Board 1',
-    value: 1,
-    icon: ViewColumn,
-  },
-  {
-    label: 'Board 2',
-    value: 2,
-    icon: ViewColumn,
-  },
-  {
-    label: 'Board 3',
-    value: 3,
-    icon: ViewColumn,
-  },
-];
-
-const Sidebar = ({ pathname, projects, project }) => (
+const Sidebar = ({
+  pathname, projects, project, boards, board, onBoardChange,
+}) => (
   <Container>
     <Left>
       <Link to="/secure">
@@ -55,9 +39,8 @@ const Sidebar = ({ pathname, projects, project }) => (
           key={id}
           active={pathname.includes(`/projects/${id}`)}
           to={`/secure/projects/${id}/board`}
-          // TODO: use current latest path part (board, tags, settings, etc.)
         >
-          {name.split(' ').map(word => word[0].toUpperCase()).join(' ')}
+          {name.split(' ').slice(0, 2).map(word => word[0].toUpperCase()).join('')}
         </Thumb>
       ))}
       <Link to="/secure/projects">
@@ -77,30 +60,37 @@ const Sidebar = ({ pathname, projects, project }) => (
         {project.name}
         <Settings />
       </ProjectHeader>
-      <Select items={BOARDS} labelKey="label" valueKey="value" iconKey="icon" value={{ ...BOARDS[0], icon: ViewList }} />
-      <SidebarItem active={pathname.includes('/board')} to="/secure/projects/1/board">
+      <Select
+        items={boards.map(b => ({ ...b, icon: ViewColumn }))}
+        labelKey="name"
+        valueKey="id"
+        iconKey="icon"
+        value={{ ...board, icon: ViewList }}
+        onSelect={(_, { icon, ...selectedBoard }) => onBoardChange(selectedBoard)}
+      />
+      <SidebarItem active={pathname.includes('/board')} to={`/secure/projects/${project.id}/board`}>
         <ViewColumn />
-        Kanban board
+          Kanban board
       </SidebarItem>
-      <SidebarItem active={pathname.includes('/reports')} to="/secure/projects/1/reports">
+      <SidebarItem active={pathname.includes('/reports')} to={`/secure/projects/${project.id}/reports`}>
         <Timeline />
-        Reports
+          Reports
       </SidebarItem>
-      <SidebarItem active={pathname.includes('/docs')} to="/secure/projects/1/docs">
+      <SidebarItem active={pathname.includes('/docs')} to={`/secure/projects/${project.id}/docs`}>
         <WebAsset />
-        Docs
+          Docs
       </SidebarItem>
-      <SidebarItem active={pathname.includes('/tags')} to="/secure/projects/1/tags">
+      <SidebarItem active={pathname.includes('/tags')} to={`/secure/projects/${project.id}/tags`}>
         <BookmarkBorder />
-        Tags
+          Tags
       </SidebarItem>
       <SidebarItem to="">
         <LinkIcon />
-        Link 1
+          Link 1
       </SidebarItem>
       <SidebarItem to="">
         <LinkIcon />
-        Link 2
+          Link 2
       </SidebarItem>
     </Right>
   </Container>
@@ -110,6 +100,9 @@ Sidebar.propTypes = {
   pathname: PropTypes.string.isRequired,
   projects: PropTypes.array.isRequired,
   project: PropTypes.object.isRequired,
+  boards: PropTypes.array.isRequired,
+  board: PropTypes.object.isRequired,
+  onBoardChange: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

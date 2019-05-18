@@ -1,11 +1,10 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { Project, Projects } from 'containers';
+import { Board, Project, Projects } from 'containers';
 import {
   Main,
   Secure,
-  Board,
   NotFound,
 } from 'components';
 

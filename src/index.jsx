@@ -1,25 +1,19 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
-import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
-
-import createStore from 'createStore';
 import theme, { GlobalStyle, ThemeLogger } from 'theme';
 import 'fonts.css';
 
 import { App } from 'containers';
-
-const history = createBrowserHistory();
-const store = createStore(history);
+import { StoreProvider } from 'store';
 
 const MOUNT_NODE = document.getElementById('root');
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
+  <StoreProvider>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Fragment>
           <App />
@@ -27,7 +21,7 @@ ReactDOM.render(
           <ThemeLogger />
         </Fragment>
       </ThemeProvider>
-    </ConnectedRouter>
-  </Provider>,
+    </BrowserRouter>
+  </StoreProvider>,
   MOUNT_NODE,
 );

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 import { useApi } from 'utils';
 import { Project } from 'components';
 import { LoadingIndicator } from 'components/Common';
+import { useStore } from 'store';
 
 const ProjectContainer = ({
   children,
@@ -13,8 +14,19 @@ const ProjectContainer = ({
 }) => {
   const [{ data: projects, loading: projectsLoading }] = useApi({ url: 'project' }, { loading: true });
   const [{ data: project, loading: projectLoading }] = useApi({ url: `project/${id}` }, { loading: true });
+  const [{ data: boards, loading: boardsLoading }] = useApi({ url: 'board', queryParams: { projectId: id } });
 
-  if (projectsLoading || projectLoading) return <LoadingIndicator />;
+  const [state, setState] = useStore();
+  const onBoardChange = board => setState({ ...state, board });
+  const { board } = state;
+
+  useEffect(() => {
+    if (boards) {
+      setState({ ...state, board: boards[0] });
+    }
+  }, [boardsLoading]);
+
+  if (projectsLoading || projectLoading || boardsLoading) return <LoadingIndicator />;
 
   if (!project) {
     return <Redirect to="/not-found" />;
@@ -24,6 +36,9 @@ const ProjectContainer = ({
     pathname,
     projects,
     project,
+    boards,
+    board,
+    onBoardChange,
   };
 
   return (

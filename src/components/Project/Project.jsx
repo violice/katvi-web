@@ -6,16 +6,10 @@ import { Container, Content } from './styles';
 
 const Project = ({
   children,
-  pathname,
-  projects,
-  project,
+  ...SidebarProps
 }) => (
   <Container>
-    <Sidebar
-      pathname={pathname}
-      projects={projects}
-      project={project}
-    />
+    <Sidebar {...SidebarProps} />
     <Content>
       {children}
     </Content>
@@ -27,6 +21,9 @@ Project.propTypes = {
   pathname: PropTypes.string.isRequired,
   projects: PropTypes.array.isRequired,
   project: PropTypes.object.isRequired,
+  boards: PropTypes.array.isRequired,
+  board: PropTypes.object.isRequired,
+  onBoardChange: PropTypes.func.isRequired,
 };
 
 export default Project;
