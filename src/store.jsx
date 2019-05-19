@@ -9,11 +9,13 @@ const StoreProvider = ({ children, initState }) => {
   useEffect(() => {
     const storeKeys = Object.keys(state);
     if (storeKeys.length > 0) {
-      console.group('%cStore Updated', 'color:#00873D');
-      storeKeys.forEach((key) => {
-        console.log(key, state[key]);
-      });
-      console.groupEnd();
+      if (process.env !== 'production') {
+        console.group('%cStore Updated', 'color:#00873D');
+        storeKeys.forEach((key) => {
+          console.log(key, state[key]);
+        });
+        console.groupEnd();
+      }
     }
   }, [JSON.stringify(state)]);
 
