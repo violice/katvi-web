@@ -6,7 +6,7 @@ import { useStore } from 'store';
 const MainContainer = ({ location: { pathname }, history: { replace } }) => {
   const [{ loading, data }, request] = useApi();
   const [state, setState] = useStore();
-
+  
   useEffect(() => {
     if (data) {
       setState({ ...state, user: data });

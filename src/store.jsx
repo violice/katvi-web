@@ -6,10 +6,12 @@ const StoreContext = React.createContext();
 const StoreProvider = ({ children, initState }) => {
   const [state, setState] = useState(initState);
 
+  const refresh = JSON.stringify(state);
+
   useEffect(() => {
-    const storeKeys = Object.keys(state);
-    if (storeKeys.length > 0) {
-      if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
+      const storeKeys = Object.keys(state);
+      if (storeKeys.length > 0) {
         console.group('%cStore Updated', 'color:#00873D');
         storeKeys.forEach((key) => {
           console.log(key, state[key]);
@@ -17,7 +19,7 @@ const StoreProvider = ({ children, initState }) => {
         console.groupEnd();
       }
     }
-  }, [JSON.stringify(state)]);
+  }, [refresh]);
 
   return (
     <StoreContext.Provider value={[state, setState]}>
