@@ -1,9 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { Board, Project, Projects } from 'containers';
+import { Board, Main, Project, Projects } from 'containers';
 import {
-  Main,
   Secure,
   NotFound,
 } from 'components';

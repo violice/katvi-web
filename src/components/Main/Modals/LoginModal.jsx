@@ -10,7 +10,6 @@ import {
   Logo,
 } from 'components/Common';
 
-import { useApi } from 'utils';
 import { Formik, Form, Field } from 'formik';
 import { Container, Header } from './styles';
 
@@ -22,11 +21,9 @@ const validationSchema = Yup.object().shape({
     .required('Please enter a password'),
 });
 
-const LoginModal = ({ onClose }) => {
-  const [{ loading }, request] = useApi();
-
+const LoginModal = ({ opened, loading, request, onClose }) => {
   return (
-    <Modal opened onClose={onClose}>
+    <Modal opened={opened} onClose={onClose}>
       <Container>
         <Header>
           Log In to
@@ -57,6 +54,9 @@ const LoginModal = ({ onClose }) => {
 };
 
 LoginModal.propTypes = {
+  opened: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  request: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

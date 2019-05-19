@@ -65,91 +65,98 @@ const FEATURES = [
   },
 ];
 
-const Main = ({ location: { pathname }, history: { replace } }) => (
-  <div style={{ overflow: 'auto', height: '100%' }}>
-    <Header>
-      <Container>
-        <Link to="/">
-          <Logo />
-        </Link>
-        {document.cookie.includes('katvi-token')
-          ? <StyledLink to="/secure/dashboard">Dashboard</StyledLink>
-          : <StyledLink to="/login">Log In / Sign Up</StyledLink>
-        }
-      </Container>
-    </Header>
-    <Hero>
-      <Container>
-        <HeroContent>
-          <HeroText>
-          Excellent solution for project management in large and small teams
-          </HeroText>
-          <Link to="/registration">
-            <Button>Try now</Button>
+const Main = ({ pathname, replace, loading, request }) => {
+  const ModalProps = {
+    loading, 
+    request,
+    onClose: () => replace('/'),
+  };
+  return (
+    <div style={{ overflow: 'auto', height: '100%' }}>
+      <Header>
+        <Container>
+          <Link to="/">
+            <Logo />
           </Link>
-        </HeroContent>
-        <img src={hero} alt="hero" />
-      </Container>
-    </Hero>
-    <Workflow>
-      <Container>
-        <img src={workflow} alt="workflow" />
-        <WorkflowContent>
-          <WorkflowHeader>Set up your workflow now and got a lot of benefits</WorkflowHeader>
-          <WorkflowText>
-            Use Katwi the way your team works best.
+          {document.cookie.includes('katvi-token')
+            ? <StyledLink to="/secure/dashboard">Dashboard</StyledLink>
+            : <StyledLink to="/login">Log In / Sign Up</StyledLink>
+          }
+        </Container>
+      </Header>
+      <Hero>
+        <Container>
+          <HeroContent>
+            <HeroText>
+              Excellent solution for project management in large and small teams
+          </HeroText>
+            <Link to="/registration">
+              <Button>Try now</Button>
+            </Link>
+          </HeroContent>
+          <img src={hero} alt="hero" />
+        </Container>
+      </Hero>
+      <Workflow>
+        <Container>
+          <img src={workflow} alt="workflow" />
+          <WorkflowContent>
+            <WorkflowHeader>Set up your workflow now and got a lot of benefits</WorkflowHeader>
+            <WorkflowText>
+              Use Katwi the way your team works best.
             <br />
-            We’ve got the flexibility & features to fit any team’s style.
+              We’ve got the flexibility & features to fit any team’s style.
           </WorkflowText>
-        </WorkflowContent>
-      </Container>
-    </Workflow>
-    <Features>
-      <FeaturesHeader>Features</FeaturesHeader>
-      {FEATURES.map(({
-        header, text, image, alt,
-      }, index) => (
-        <Feature index={index} key={alt}>
-          <FeatureContent>
-            <FeatureHeader>
-              {header}
-            </FeatureHeader>
-            <FeatureText>
-              {text}
-            </FeatureText>
-          </FeatureContent>
-          <img src={image} alt={alt} />
-        </Feature>
-      ))}
-    </Features>
-    <Technologies>
-      <img src={react} alt="react" />
-      <TechnologiesContent>
-        <TechnologiesHeader>
+          </WorkflowContent>
+        </Container>
+      </Workflow>
+      <Features>
+        <FeaturesHeader>Features</FeaturesHeader>
+        {FEATURES.map(({
+          header, text, image, alt,
+        }, index) => (
+            <Feature index={index} key={alt}>
+              <FeatureContent>
+                <FeatureHeader>
+                  {header}
+                </FeatureHeader>
+                <FeatureText>
+                  {text}
+                </FeatureText>
+              </FeatureContent>
+              <img src={image} alt={alt} />
+            </Feature>
+          ))}
+      </Features>
+      <Technologies>
+        <img src={react} alt="react" />
+        <TechnologiesContent>
+          <TechnologiesHeader>
             Using modern technologies,
             we provide an opportunity for remote
             teams to work as one
         </TechnologiesHeader>
-        <Link to="/registration">
-          <Button>Try now</Button>
+          <Link to="/registration">
+            <Button>Try now</Button>
+          </Link>
+        </TechnologiesContent>
+        <img src={around} alt="around" />
+      </Technologies>
+      <Footer>
+        <Link to="/">
+          <Logo />
         </Link>
-      </TechnologiesContent>
-      <img src={around} alt="around" />
-    </Technologies>
-    <Footer>
-      <Link to="/">
-        <Logo />
-      </Link>
-      <Copyright>© Copyright 2019. All rights reserved.</Copyright>
-    </Footer>
-    {pathname.includes('login') && <LoginModal onClose={() => replace('/')} />}
-    <RegistrationModal opened={pathname.includes('registration')} onClose={() => replace('/')} />
-  </div>
-);
+        <Copyright>© Copyright 2019. All rights reserved.</Copyright>
+      </Footer>
+      <LoginModal opened={pathname.includes('login')} {...ModalProps} />}
+      <RegistrationModal opened={pathname.includes('registration')} {...ModalProps} />
+    </div>
+  );
+};
 
 Main.propTypes = {
-  location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  pathname: PropTypes.string.isRequired,
+  replace: PropTypes.func.isRequired,
 };
 
 export default React.memo(Main);
