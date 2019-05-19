@@ -9,7 +9,7 @@ const StoreProvider = ({ children, initState }) => {
   useEffect(() => {
     const storeKeys = Object.keys(state);
     if (storeKeys.length > 0) {
-      if (process.env !== 'production') {
+      if (process.env.NODE_ENV !== 'production') {
         console.group('%cStore Updated', 'color:#00873D');
         storeKeys.forEach((key) => {
           console.log(key, state[key]);
