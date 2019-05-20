@@ -15,11 +15,17 @@ const Button = ({ loading, children, ...props }) => (
 Button.propTypes = {
   loading: PropTypes.bool,
   children: PropTypes.node,
+  size: PropTypes.oneOf(['medium', 'small']),
+  color: PropTypes.string,
+  background: PropTypes.string,
 };
 
 Button.defaultProps = {
   loading: false,
   children: null,
+  size: 'medium',
+  color: '#ffffff',
+  background: '#7D4CDB',
 };
 
 export default Button;

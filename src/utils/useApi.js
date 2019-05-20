@@ -33,8 +33,10 @@ const DEFAULT_STATE = {
   data: null,
 };
 
-const request = dispatch => async (params) => {
+const request = (dispatch, initParams) => async (requestParams) => {
   dispatch({ type: 'REQUEST' });
+
+  const params = requestParams || initParams;
 
   const {
     method = 'get',
@@ -63,11 +65,11 @@ const useApi = (initParams, initState = {}) => {
 
   useEffect(() => {
     if (initParams) {
-      request(dispatch)(initParams);
+      request(dispatch, initParams)();
     }
   }, [refresh]);
 
-  return [state, request(dispatch)];
+  return [state, request(dispatch, initParams)];
 };
 
 export default useApi;

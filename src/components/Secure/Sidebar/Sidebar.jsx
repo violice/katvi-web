@@ -9,7 +9,14 @@ import { Logo } from 'components/Common';
 
 import { Container, SidebarItem, BottomItems } from './styles';
 
-const Sidebar = ({ pathname }) => (
+const renderAccountName = ({
+  firstName, lastName, username, email,
+}) => {
+  if (firstName && lastName) return `${firstName} ${lastName}`;
+  return username || email;
+};
+
+const Sidebar = ({ pathname, user }) => (
   <Container>
     <Link to="/secure">
       <Logo type="inverted" />
@@ -29,7 +36,7 @@ const Sidebar = ({ pathname }) => (
       </SidebarItem>
       <SidebarItem active={pathname.includes('/account')} to="/secure/account">
         <AccountCircle />
-          Account Name
+        <div>{renderAccountName(user)}</div>
       </SidebarItem>
     </BottomItems>
   </Container>
@@ -37,6 +44,7 @@ const Sidebar = ({ pathname }) => (
 
 Sidebar.propTypes = {
   pathname: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default Sidebar;

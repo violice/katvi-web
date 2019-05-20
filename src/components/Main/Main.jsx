@@ -65,9 +65,11 @@ const FEATURES = [
   },
 ];
 
-const Main = ({ pathname, replace, loading, request }) => {
+const Main = ({
+  pathname, replace, loading, request,
+}) => {
   const ModalProps = {
-    loading, 
+    loading,
     request,
     onClose: () => replace('/'),
   };
@@ -89,9 +91,9 @@ const Main = ({ pathname, replace, loading, request }) => {
           <HeroContent>
             <HeroText>
               Excellent solution for project management in large and small teams
-          </HeroText>
+            </HeroText>
             <Link to="/registration">
-              <Button>Try now</Button>
+              <Button color="#7D4CDB" background="#6FFFB0">Try now</Button>
             </Link>
           </HeroContent>
           <img src={hero} alt="hero" />
@@ -104,9 +106,9 @@ const Main = ({ pathname, replace, loading, request }) => {
             <WorkflowHeader>Set up your workflow now and got a lot of benefits</WorkflowHeader>
             <WorkflowText>
               Use Katwi the way your team works best.
-            <br />
+              <br />
               We’ve got the flexibility & features to fit any team’s style.
-          </WorkflowText>
+            </WorkflowText>
           </WorkflowContent>
         </Container>
       </Workflow>
@@ -115,18 +117,18 @@ const Main = ({ pathname, replace, loading, request }) => {
         {FEATURES.map(({
           header, text, image, alt,
         }, index) => (
-            <Feature index={index} key={alt}>
-              <FeatureContent>
-                <FeatureHeader>
-                  {header}
-                </FeatureHeader>
-                <FeatureText>
-                  {text}
-                </FeatureText>
-              </FeatureContent>
-              <img src={image} alt={alt} />
-            </Feature>
-          ))}
+          <Feature index={index} key={alt}>
+            <FeatureContent>
+              <FeatureHeader>
+                {header}
+              </FeatureHeader>
+              <FeatureText>
+                {text}
+              </FeatureText>
+            </FeatureContent>
+            <img src={image} alt={alt} />
+          </Feature>
+        ))}
       </Features>
       <Technologies>
         <img src={react} alt="react" />
@@ -135,9 +137,9 @@ const Main = ({ pathname, replace, loading, request }) => {
             Using modern technologies,
             we provide an opportunity for remote
             teams to work as one
-        </TechnologiesHeader>
+          </TechnologiesHeader>
           <Link to="/registration">
-            <Button>Try now</Button>
+            <Button color="#7D4CDB" background="#6FFFB0">Try now</Button>
           </Link>
         </TechnologiesContent>
         <img src={around} alt="around" />
@@ -148,7 +150,7 @@ const Main = ({ pathname, replace, loading, request }) => {
         </Link>
         <Copyright>© Copyright 2019. All rights reserved.</Copyright>
       </Footer>
-      <LoginModal opened={pathname.includes('login')} {...ModalProps} />}
+      <LoginModal opened={pathname.includes('login')} {...ModalProps} />
       <RegistrationModal opened={pathname.includes('registration')} {...ModalProps} />
     </div>
   );
@@ -157,6 +159,8 @@ const Main = ({ pathname, replace, loading, request }) => {
 Main.propTypes = {
   pathname: PropTypes.string.isRequired,
   replace: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  request: PropTypes.func.isRequired,
 };
 
 export default React.memo(Main);

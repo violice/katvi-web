@@ -51,6 +51,13 @@ const Description = styled.div`
 
 const Bottom = styled.div`
   height: 60px;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  color: #7D4CDB;
+  & > svg {
+    margin-right: 5px;
+  }
 `;
 
 export {

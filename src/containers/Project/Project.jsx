@@ -17,6 +17,13 @@ const ProjectContainer = ({
   const [{ data: boards, loading: boardsLoading }] = useApi({ url: 'board', queryParams: { projectId: id } });
 
   const [state, setState] = useStore();
+
+  useEffect(() => {
+    if (project) {
+      setState({ ...state, project });
+    }
+  }, [projectLoading]);
+
   const onBoardChange = board => setState({ ...state, board });
   const { board } = state;
 

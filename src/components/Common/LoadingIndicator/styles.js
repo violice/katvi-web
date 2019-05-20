@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+const calc = (size, value) => {
+  switch (size) {
+    case 'medium':
+      return value;
+    case 'small':
+      return value / 2;
+    default:
+      return 0;
+  }
+};
+
 const Circle = styled.div`
   position: absolute;
   border: 4px solid #7D4CDB;
@@ -9,8 +20,8 @@ const Circle = styled.div`
 
   @keyframes lds-ripple {
     0% {
-      top: ${props => (props.size.split('px')[0] - 8) / 2}px;
-      left: ${props => (props.size.split('px')[0] - 8) / 2}px;
+      top: ${props => calc(props.size, 28)}px;
+      left: ${props => calc(props.size, 28)}px;
       width: 0;
       height: 0;
       opacity: 1;
@@ -18,8 +29,8 @@ const Circle = styled.div`
     100% {
       top: -1px;
       left: -1px;
-      width: ${props => props.size.split('px')[0] - 6}px;
-      height: ${props => props.size.split('px')[0] - 6}px;
+      width: ${props => calc(props.size, 58)}px;
+      height: ${props => calc(props.size, 58)}px;
       opacity: 0;
     }
   }
@@ -28,8 +39,8 @@ const Circle = styled.div`
 const Container = styled.div`
   display: inline-block;
   position: relative;
-  width: ${props => props.size};
-  height: ${props => props.size};
+  width: ${props => calc(props.size, 64)}px;
+  height: ${props => calc(props.size, 64)}px;
   & div:nth-child(2) {
     animation-delay: -0.5s;
   }

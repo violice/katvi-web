@@ -21,8 +21,14 @@ const SidebarItem = styled(Link)`
   &:not(:last-child) {
     margin-bottom: 40px;
   }
+  & > div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   & > svg {
     margin-right: 15px;
+    min-width: 24px;
   }
 `;
 

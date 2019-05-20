@@ -3,3 +3,5 @@ export { default as Board } from './Board';
 export { default as Main } from './Main';
 export { default as Project } from './Project';
 export { default as Projects } from './Projects';
+export { default as ProjectSettings } from './ProjectSettings';
+export { default as Secure } from './Secure';

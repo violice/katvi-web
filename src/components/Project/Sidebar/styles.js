@@ -53,13 +53,17 @@ const Right = styled.div`
   }
 `;
 
-const ProjectHeader = styled.div`
+const ProjectHeader = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 50px;
+  color: #000000;
+  & > svg {
+    margin-right: 5px;
+  }
 `;
 
 const SidebarItem = styled(Link)`

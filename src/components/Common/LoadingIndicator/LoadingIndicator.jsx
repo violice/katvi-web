@@ -11,11 +11,11 @@ const LoadingIndicator = ({ size }) => (
 );
 
 LoadingIndicator.propTypes = {
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['medium', 'small']),
 };
 
 LoadingIndicator.defaultProps = {
-  size: '64px',
+  size: 'medium',
 };
 
 export default LoadingIndicator;

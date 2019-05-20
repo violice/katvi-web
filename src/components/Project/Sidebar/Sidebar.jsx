@@ -56,7 +56,7 @@ const Sidebar = ({
       </BottomItems>
     </Left>
     <Right>
-      <ProjectHeader>
+      <ProjectHeader to={`/secure/projects/${project.id}/settings`}>
         {project.name}
         <Settings />
       </ProjectHeader>

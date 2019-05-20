@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Sidebar } from './Sidebar';
 import { Container, Content } from './styles';
 
-const Secure = ({ children, location: { pathname } }) => (
+const Secure = ({ children, pathname, user }) => (
   <Container sidebar={!pathname.includes('projects/')}>
-    {!pathname.includes('projects/') && <Sidebar pathname={pathname} />}
+    {!pathname.includes('projects/') && <Sidebar pathname={pathname} user={user} />}
     <Content>
       {children}
     </Content>
@@ -15,7 +15,8 @@ const Secure = ({ children, location: { pathname } }) => (
 
 Secure.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.object.isRequired,
+  pathname: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default Secure;

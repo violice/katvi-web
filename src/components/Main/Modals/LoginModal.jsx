@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import {
@@ -10,7 +11,6 @@ import {
   Logo,
 } from 'components/Common';
 
-import { Formik, Form, Field } from 'formik';
 import { Container, Header } from './styles';
 
 const validationSchema = Yup.object().shape({
@@ -21,37 +21,37 @@ const validationSchema = Yup.object().shape({
     .required('Please enter a password'),
 });
 
-const LoginModal = ({ opened, loading, request, onClose }) => {
-  return (
-    <Modal opened={opened} onClose={onClose}>
-      <Container>
-        <Header>
+const LoginModal = ({
+  opened, loading, request, onClose,
+}) => (
+  <Modal opened={opened} onClose={onClose}>
+    <Container>
+      <Header>
           Log In to
-          <Logo />
-        </Header>
-        <Link to="/registration">or create an account</Link>
-        <Formik
-          validationSchema={validationSchema}
-          initialValues={{ email: '', password: '' }}
-          onSubmit={(values) => {
-            request({
-              method: 'post',
-              url: 'login',
-              body: values,
-            });
-          }}
-          render={() => (
-            <Form>
-              <Field name="email" placeholder="Email" component={Input} />
-              <Field name="password" placeholder="Password" type="password" component={Input} />
-              <Button loading={loading} type="submit">Log In</Button>
-            </Form>
-          )}
-        />
-      </Container>
-    </Modal>
-  );
-};
+        <Logo />
+      </Header>
+      <Link to="/registration">or create an account</Link>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{ email: '', password: '' }}
+        onSubmit={(values) => {
+          request({
+            method: 'post',
+            url: 'login',
+            body: values,
+          });
+        }}
+        render={() => (
+          <Form>
+            <Field name="email" placeholder="Email" component={Input} />
+            <Field name="password" placeholder="Password" type="password" component={Input} />
+            <Button loading={loading} type="submit" color="#7D4CDB" background="#6FFFB0">Log In</Button>
+          </Form>
+        )}
+      />
+    </Container>
+  </Modal>
+);
 
 LoginModal.propTypes = {
   opened: PropTypes.bool.isRequired,

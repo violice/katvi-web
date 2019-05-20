@@ -7,8 +7,18 @@ import { ProjectCard } from './ProjectCard';
 import { AddProject } from './AddProject';
 import { Container, Header, Content } from './styles';
 
-const Projects = ({ projects }) => {
+const Projects = ({
+  projects, loading, createProject, push,
+}) => {
   const [opened, setOpened] = useState(false);
+
+  const AddProjectProps = {
+    opened,
+    loading,
+    createProject,
+    onClose: () => setOpened(false),
+  };
+
   return (
     <Container>
       <Header>
@@ -16,15 +26,18 @@ const Projects = ({ projects }) => {
         <Button onClick={() => setOpened(true)}>Add Project</Button>
       </Header>
       <Content>
-        {projects.map(project => (<ProjectCard key={project.id} project={project} />))}
+        {projects.map(project => (<ProjectCard key={project.id} project={project} push={push} />))}
       </Content>
-      <AddProject opened={opened} onClose={() => setOpened(false)} />
+      <AddProject {...AddProjectProps} />
     </Container>
   );
 };
 
 Projects.propTypes = {
   projects: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  createProject: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
 };
 
 export default Projects;

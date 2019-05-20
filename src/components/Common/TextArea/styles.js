@@ -5,8 +5,9 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const BaseInput = styled.input`
+const BaseInput = styled.textarea`
   font-family: 'Montserrat';
+  font-size: 24px;
   font-weight: 400;
   border: none;
   outline: none;
@@ -29,7 +30,7 @@ const BaseInput = styled.input`
         return null;
     }
   }}
-  
+
   &:placeholder {
     color: #999999;
   }
