@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 50px 80px;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 `;
 
 const Header = styled.div`

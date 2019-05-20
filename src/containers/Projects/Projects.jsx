@@ -11,7 +11,7 @@ const ProjectsContainer = ({ history: { push } }) => {
 
   useEffect(() => {
     if (project) {
-      push(`/secure/projects/${project.id}`);
+      push(`/secure/projects/${project.id}/board`);
     }
   }, [loading]);
 
