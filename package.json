@@ -4,18 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "connected-react-router": "^6.3.2",
     "formik": "^1.5.4",
-    "history": "^4.7.2",
-    "hoist-non-react-statics": "^3.3.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",
-    "redux": "^4.0.1",
-    "redux-saga": "^1.0.2",
     "rmdi": "^1.0.1",
     "styled-components": "^4.1.3",
     "yup": "^0.27.0"
