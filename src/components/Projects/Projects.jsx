@@ -22,8 +22,8 @@ const Projects = ({
   return (
     <Container>
       <Header>
-        Projects
-        <Button onClick={() => setOpened(true)}>Add Project</Button>
+        Проекты
+        <Button onClick={() => setOpened(true)}>Добавить проект</Button>
       </Header>
       <Content>
         {projects.map(project => (<ProjectCard key={project.id} project={project} push={push} />))}

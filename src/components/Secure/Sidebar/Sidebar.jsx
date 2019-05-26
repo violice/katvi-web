@@ -23,16 +23,16 @@ const Sidebar = ({ pathname, user }) => (
     </Link>
     <SidebarItem active={pathname.includes('/dashboard')} to="/secure/dashboard">
       <Dashboard />
-        Dashboard
+        Рабочий стол
     </SidebarItem>
     <SidebarItem active={pathname.includes('/projects')} to="/secure/projects">
       <FolderOpen />
-        Projects
+        Проекты
     </SidebarItem>
     <BottomItems>
       <SidebarItem active={pathname.includes('/help')} to="/secure/help">
         <HelpOutline />
-          Help
+          Справка
       </SidebarItem>
       <SidebarItem active={pathname.includes('/account')} to="/secure/account">
         <AccountCircle />

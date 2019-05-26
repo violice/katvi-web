@@ -27,10 +27,10 @@ const RegistrationModal = ({
   <Modal opened={opened} onClose={onClose}>
     <Container>
       <Header>
-          Sign Up to
+         Зарегистироваться в
         <Logo />
       </Header>
-      <Link to="/login">or log in existing account</Link>
+      <Link to="/login">или войти в существующий аккаунт</Link>
       <Formik
         validationSchema={validationSchema}
         initialValues={{ email: '', password: '' }}
@@ -43,9 +43,9 @@ const RegistrationModal = ({
         }}
         render={() => (
           <Form>
-            <Field name="email" placeholder="Email" component={Input} />
-            <Field name="password" placeholder="Password" type="password" component={Input} />
-            <Button loading={loading} type="submit" color="#7D4CDB" background="#6FFFB0">Log In</Button>
+            <Field name="email" placeholder="Электронная почта" component={Input} />
+            <Field name="password" placeholder="Пароль" type="password" component={Input} />
+            <Button loading={loading} type="submit" color="#7D4CDB" background="#6FFFB0">Зарегистироваться</Button>
           </Form>
         )}
       />

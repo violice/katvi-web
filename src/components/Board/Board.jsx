@@ -20,7 +20,7 @@ const Board = () => (
       <MoreHoriz color="#7D4CDB" size="48" />
     </Header>
     <Header>
-      <Button size="small">Add Card</Button>
+      <Button size="small">Добавить карточку</Button>
     </Header>
     <Content>
       <Column>

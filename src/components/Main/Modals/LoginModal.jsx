@@ -27,10 +27,10 @@ const LoginModal = ({
   <Modal opened={opened} onClose={onClose}>
     <Container>
       <Header>
-          Log In to
+          Войти в
         <Logo />
       </Header>
-      <Link to="/registration">or create an account</Link>
+      <Link to="/registration">или создать аккаунт</Link>
       <Formik
         validationSchema={validationSchema}
         initialValues={{ email: '', password: '' }}
@@ -43,9 +43,9 @@ const LoginModal = ({
         }}
         render={() => (
           <Form>
-            <Field name="email" placeholder="Email" component={Input} />
-            <Field name="password" placeholder="Password" type="password" component={Input} />
-            <Button loading={loading} type="submit" color="#7D4CDB" background="#6FFFB0">Log In</Button>
+            <Field name="email" placeholder="Электронная почта" component={Input} />
+            <Field name="password" placeholder="Пароль" type="password" component={Input} />
+            <Button loading={loading} type="submit" color="#7D4CDB" background="#6FFFB0">Войти</Button>
           </Form>
         )}
       />

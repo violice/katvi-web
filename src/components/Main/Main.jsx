@@ -40,26 +40,26 @@ import {
 
 const FEATURES = [
   {
-    header: 'Zero configuration',
-    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+    header: 'Стартуйте легко',
+    text: 'Начало работы над новый проектом не требует сложной настройки. Просто создайте проект, добавьте пару колонок и пригласите участников.',
     image: zeroConfiguration,
     alt: 'zeroConfiguration',
   },
   {
-    header: 'Powerful and customizable',
-    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+    header: 'Настраивайте уникальный рабочий процесс',
+    text: 'Используя мощные инструменты настройте уникальный рабочий процесс для своей команды.',
     image: powerAndCustomizable,
     alt: 'powerAndCustomizable',
   },
   {
-    header: 'Create reports',
-    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+    header: 'Создавайте отчеты',
+    text: 'Повышайте производительность команды, опираясь на визуальные данные, доступные ее членам в реальном времени.',
     image: createReports,
     alt: 'createReports',
   },
   {
-    header: 'Project documentation',
-    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+    header: 'Ведите документацию',
+    text: 'Добавляейте документацию в проект. Всего пару щелчков и всей команде доступны требования к проекту и описание планов.',
     image: projectDocumentation,
     alt: 'projectDocumentation',
   },
@@ -81,8 +81,8 @@ const Main = ({
             <Logo />
           </Link>
           {document.cookie.includes('katvi-token')
-            ? <StyledLink to="/secure/dashboard">Dashboard</StyledLink>
-            : <StyledLink to="/login">Log In / Sign Up</StyledLink>
+            ? <StyledLink to="/secure/dashboard">Рабочий стол</StyledLink>
+            : <StyledLink to="/login">Войти / Зарегистироваться</StyledLink>
           }
         </Container>
       </Header>
@@ -90,10 +90,12 @@ const Main = ({
         <Container>
           <HeroContent>
             <HeroText>
-              Excellent solution for project management in large and small teams
+              Отличное решение для управления проектами в больших и малых командах
             </HeroText>
             <Link to="/registration">
-              <Button color="#7D4CDB" background="#6FFFB0">Try now</Button>
+              <Button color="#7D4CDB" background="#6FFFB0">
+                Попробовать
+              </Button>
             </Link>
           </HeroContent>
           <img src={hero} alt="hero" />
@@ -103,17 +105,19 @@ const Main = ({
         <Container>
           <img src={workflow} alt="workflow" />
           <WorkflowContent>
-            <WorkflowHeader>Set up your workflow now and got a lot of benefits</WorkflowHeader>
+            <WorkflowHeader>
+              Настройте свой рабочий процесс сейчас и получите массу преимуществ
+            </WorkflowHeader>
             <WorkflowText>
-              Use Katwi the way your team works best.
+              Используйте katvi для улучшения и оптимизации командной работы.
               <br />
-              We’ve got the flexibility & features to fit any team’s style.
+              Наша гибкость и особенности, позволяют соответствовать стилю любой команды.
             </WorkflowText>
           </WorkflowContent>
         </Container>
       </Workflow>
       <Features>
-        <FeaturesHeader>Features</FeaturesHeader>
+        <FeaturesHeader>Используйте возможности katvi</FeaturesHeader>
         {FEATURES.map(({
           header, text, image, alt,
         }, index) => (
@@ -134,12 +138,13 @@ const Main = ({
         <img src={react} alt="react" />
         <TechnologiesContent>
           <TechnologiesHeader>
-            Using modern technologies,
-            we provide an opportunity for remote
-            teams to work as one
+            Используя современные технологии мы позволяем
+            удаленным командам работать как единое целое
           </TechnologiesHeader>
           <Link to="/registration">
-            <Button color="#7D4CDB" background="#6FFFB0">Try now</Button>
+            <Button color="#7D4CDB" background="#6FFFB0">
+              Попробовать
+            </Button>
           </Link>
         </TechnologiesContent>
         <img src={around} alt="around" />
@@ -148,7 +153,9 @@ const Main = ({
         <Link to="/">
           <Logo />
         </Link>
-        <Copyright>© Copyright 2019. All rights reserved.</Copyright>
+        <Copyright>
+          © katvi 2019. Все права защищены.
+        </Copyright>
       </Footer>
       <LoginModal opened={pathname.includes('login')} {...ModalProps} />
       <RegistrationModal opened={pathname.includes('registration')} {...ModalProps} />

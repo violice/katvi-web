@@ -70,27 +70,27 @@ const Sidebar = ({
       />
       <SidebarItem active={pathname.includes('/board')} to={`/secure/projects/${project.id}/board`}>
         <ViewColumn />
-          Kanban board
+        Доска Kanban
       </SidebarItem>
       <SidebarItem active={pathname.includes('/reports')} to={`/secure/projects/${project.id}/reports`}>
         <Timeline />
-          Reports
+          Отчеты
       </SidebarItem>
       <SidebarItem active={pathname.includes('/docs')} to={`/secure/projects/${project.id}/docs`}>
         <WebAsset />
-          Docs
+          Документация
       </SidebarItem>
       <SidebarItem active={pathname.includes('/tags')} to={`/secure/projects/${project.id}/tags`}>
         <BookmarkBorder />
-          Tags
+          Теги
       </SidebarItem>
       <SidebarItem to="">
         <LinkIcon />
-          Link 1
+          Ссылка 1
       </SidebarItem>
       <SidebarItem to="">
         <LinkIcon />
-          Link 2
+          Ссылка 2
       </SidebarItem>
     </Right>
   </Container>

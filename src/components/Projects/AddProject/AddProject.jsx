@@ -22,15 +22,15 @@ const AddProject = ({
   <Formik
     validationSchema={validationSchema}
     initialValues={{
-      name: 'New Project',
+      name: 'Новый проект',
       description: '',
-      boardName: 'Default Board',
+      boardName: 'Стандартная доска',
       boardDescription: '',
     }}
     onSubmit={createProject}
     render={({ submitForm }) => (
       <Modal
-        header="Add Project"
+        header="Добавить проект"
         footer={(
           <Footer>
             <Button
@@ -39,7 +39,7 @@ const AddProject = ({
               size="small"
               onClick={onClose}
             >
-              Cancel
+              Закрыть
             </Button>
             <Button
               color="#7D4CDB"
@@ -48,7 +48,7 @@ const AddProject = ({
               loading={loading}
               onClick={submitForm}
             >
-              Add
+              Добавить
             </Button>
           </Footer>
           )}
@@ -57,10 +57,10 @@ const AddProject = ({
       >
         <Container>
           <Form>
-            <Field size="small" name="name" placeholder="Name" component={Input} />
-            <Field size="small" rows={5} name="description" placeholder="Description" component={TextArea} />
-            <Field size="small" name="boardName" placeholder="Board Name" component={Input} />
-            <Field size="small" rows={5} name="boardDescription" placeholder="Board Description" component={TextArea} />
+            <Field size="small" name="name" placeholder="Название проекта" component={Input} />
+            <Field size="small" rows={5} name="description" placeholder="Описание проекта" component={TextArea} />
+            <Field size="small" name="boardName" placeholder="Название доски" component={Input} />
+            <Field size="small" rows={5} name="boardDescription" placeholder="Описание доски" component={TextArea} />
           </Form>
         </Container>
       </Modal>
