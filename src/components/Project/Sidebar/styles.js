@@ -53,7 +53,7 @@ const Right = styled.div`
   }
 `;
 
-const ProjectHeader = styled(Link)`
+const ProjectHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,6 +63,9 @@ const ProjectHeader = styled(Link)`
   color: #000000;
   & > svg {
     margin-right: 5px;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 

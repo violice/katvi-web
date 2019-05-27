@@ -28,7 +28,7 @@ const AddProject = ({
       boardDescription: '',
     }}
     onSubmit={createProject}
-    render={({ submitForm }) => (
+    render={({ submitForm, resetForm }) => (
       <Modal
         header="Добавить проект"
         footer={(
@@ -37,7 +37,10 @@ const AddProject = ({
               color="#000000"
               background="#dadada"
               size="small"
-              onClick={onClose}
+              onClick={() => {
+                resetForm();
+                onClose();
+              }}
             >
               Закрыть
             </Button>
@@ -53,7 +56,10 @@ const AddProject = ({
           </Footer>
           )}
         opened={opened}
-        onClose={onClose}
+        onClose={() => {
+          resetForm();
+          onClose();
+        }}
       >
         <Container>
           <Form>

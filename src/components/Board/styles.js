@@ -4,6 +4,7 @@ const Container = styled.div`
   padding: 50px 80px 0px 80px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
 
 const Header = styled.div`
@@ -13,6 +14,9 @@ const Header = styled.div`
   font-weight: 600;
   font-size: 36px;
   margin-bottom: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Content = styled.div`

@@ -27,7 +27,7 @@ import {
 } from './styles';
 
 const Sidebar = ({
-  pathname, projects, project, boards, board, onBoardChange,
+  pathname, projects, project, boards, board, onBoardChange, openSettings,
 }) => (
   <Container>
     <Left>
@@ -56,7 +56,7 @@ const Sidebar = ({
       </BottomItems>
     </Left>
     <Right>
-      <ProjectHeader to={`/secure/projects/${project.id}/settings`}>
+      <ProjectHeader onClick={openSettings}>
         {project.name}
         <Settings />
       </ProjectHeader>
@@ -70,7 +70,7 @@ const Sidebar = ({
       />
       <SidebarItem active={pathname.includes('/board')} to={`/secure/projects/${project.id}/board`}>
         <ViewColumn />
-        Доска Kanban
+          Доска Kanban
       </SidebarItem>
       <SidebarItem active={pathname.includes('/reports')} to={`/secure/projects/${project.id}/reports`}>
         <Timeline />
@@ -103,6 +103,7 @@ Sidebar.propTypes = {
   boards: PropTypes.array.isRequired,
   board: PropTypes.object.isRequired,
   onBoardChange: PropTypes.func.isRequired,
+  openSettings: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

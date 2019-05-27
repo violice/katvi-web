@@ -44,7 +44,7 @@ export default {
   },
   patch: async (url, body) => {
     try {
-      const { data } = await Axios.patch(url, body);
+      const { data } = await AxiosInstance.patch(url, body);
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -52,7 +52,7 @@ export default {
   },
   delete: async (url) => {
     try {
-      const { data } = await Axios.delete(url);
+      const { data } = await AxiosInstance.delete(url);
       return data;
     } catch ({ response }) {
       return throwError(response);

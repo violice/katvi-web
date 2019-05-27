@@ -6,7 +6,6 @@ import {
   Main,
   Project,
   Projects,
-  ProjectSettings,
   Secure,
 } from 'containers';
 
@@ -28,7 +27,6 @@ const App = () => (
               render={projectRouteProps => (
                 <Project {...projectRouteProps}>
                   <Switch>
-                    <Route path="/secure/projects/:id/settings" component={ProjectSettings} />
                     <Route path="/secure/projects/:id/board" component={Board} />
                     <Route path="/secure/projects/:id/reports" render={() => 'Reports'} />
                     <Route path="/secure/projects/:id/docs" render={() => 'Docs'} />
