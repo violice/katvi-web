@@ -20,7 +20,7 @@ const Board = ({ board, editBoard }) => {
   return (
     <Container>
       <Header onClick={() => setOpened(true)}>
-        Default Board
+        {board.name}
         <MoreHoriz color="#7D4CDB" size="48" />
       </Header>
       <Header>
