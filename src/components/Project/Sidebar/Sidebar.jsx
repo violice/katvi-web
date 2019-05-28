@@ -10,7 +10,6 @@ import {
   ViewColumn,
   Timeline,
   WebAsset,
-  BookmarkBorder,
   Link as LinkIcon,
 } from 'rmdi';
 
@@ -27,7 +26,7 @@ import {
 } from './styles';
 
 const Sidebar = ({
-  pathname, projects, project, boards, board, onBoardChange, openSettings,
+  pathname, projects, project, board, onBoardChange,
 }) => (
   <Container>
     <Left>
@@ -56,12 +55,12 @@ const Sidebar = ({
       </BottomItems>
     </Left>
     <Right>
-      <ProjectHeader onClick={openSettings}>
+      <ProjectHeader to={`/secure/projects/${project.id}/settings`}>
         {project.name}
         <Settings />
       </ProjectHeader>
       <Select
-        items={boards.map(b => ({ ...b, icon: ViewColumn }))}
+        items={project.boards.map(b => ({ ...b, icon: ViewColumn }))}
         labelKey="name"
         valueKey="id"
         iconKey="icon"
@@ -80,10 +79,6 @@ const Sidebar = ({
         <WebAsset />
           Документация
       </SidebarItem>
-      <SidebarItem active={pathname.includes('/tags')} to={`/secure/projects/${project.id}/tags`}>
-        <BookmarkBorder />
-          Теги
-      </SidebarItem>
       <SidebarItem to="">
         <LinkIcon />
           Ссылка 1
@@ -91,6 +86,10 @@ const Sidebar = ({
       <SidebarItem to="">
         <LinkIcon />
           Ссылка 2
+      </SidebarItem>
+      <SidebarItem to="">
+        <LinkIcon />
+          Ссылка 3
       </SidebarItem>
     </Right>
   </Container>
@@ -100,10 +99,8 @@ Sidebar.propTypes = {
   pathname: PropTypes.string.isRequired,
   projects: PropTypes.array.isRequired,
   project: PropTypes.object.isRequired,
-  boards: PropTypes.array.isRequired,
   board: PropTypes.object.isRequired,
   onBoardChange: PropTypes.func.isRequired,
-  openSettings: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 600px;
-  form { 
+  & > form { 
     display: flex;
     flex-direction: column;
     & > div {

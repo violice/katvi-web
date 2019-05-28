@@ -23,8 +23,6 @@ const validationSchema = Yup.object().shape({
 const Settings = ({
   opened,
   board,
-  // loading,
-  // request,
   onClose,
   editBoard,
 }) => (
@@ -52,7 +50,6 @@ const Settings = ({
               color="#7D4CDB"
               background="#6FFFB0"
               size="small"
-              // loading={loading}
               onClick={submitForm}
             >
                 Применить
@@ -109,9 +106,8 @@ const Settings = ({
 Settings.propTypes = {
   opened: PropTypes.bool.isRequired,
   board: PropTypes.object.isRequired,
-  // loading: PropTypes.bool.isRequired,
-  // request: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  editBoard: PropTypes.func.isRequired,
 };
 
 export default Settings;

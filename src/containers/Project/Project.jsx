@@ -14,26 +14,19 @@ const ProjectContainer = ({
 }) => {
   const [{ data: projects, loading: projectsLoading }] = useApi({ url: 'project' }, { loading: true });
   const [{ data: project, loading: projectLoading }] = useApi({ url: `project/${id}` }, { loading: true });
-  const [{ data: boards, loading: boardsLoading }] = useApi({ url: 'board', queryParams: { projectId: id } });
 
   const [state, setState] = useStore();
 
   useEffect(() => {
     if (project) {
-      setState({ ...state, project });
+      setState({ ...state, project, board: project.boards[0] });
     }
   }, [projectLoading]);
 
   const onBoardChange = board => setState({ ...state, board });
   const { board } = state;
 
-  useEffect(() => {
-    if (boards) {
-      setState({ ...state, board: boards[0] });
-    }
-  }, [boardsLoading]);
-
-  if (projectsLoading || projectLoading || boardsLoading) return <LoadingIndicator />;
+  if (projectsLoading || projectLoading) return <LoadingIndicator />;
 
   if (!project) {
     return <Redirect to="/not-found" />;
@@ -43,7 +36,6 @@ const ProjectContainer = ({
     pathname,
     projects,
     project,
-    boards,
     board,
     onBoardChange,
   };

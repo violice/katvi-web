@@ -35,9 +35,8 @@ const Board = ({ board, editBoard }) => {
             </ColumnHeader>
             <ColumnContent>
               {column.cards.map(card => (
-                <Card />
+                <Card card={card} />
               ))}
-
             </ColumnContent>
           </Column>
         ))}
@@ -54,6 +53,7 @@ const Board = ({ board, editBoard }) => {
 
 Board.propTypes = {
   board: PropTypes.object.isRequired,
+  editBoard: PropTypes.func.isRequired,
 };
 
 export default Board;

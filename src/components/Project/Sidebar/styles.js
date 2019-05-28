@@ -53,7 +53,7 @@ const Right = styled.div`
   }
 `;
 
-const ProjectHeader = styled.div`
+const ProjectHeader = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,9 +63,7 @@ const ProjectHeader = styled.div`
   color: #000000;
   & > svg {
     margin-right: 5px;
-  }
-  &:hover {
-    cursor: pointer;
+    min-width: 24px;
   }
 `;
 
@@ -76,7 +74,7 @@ const SidebarItem = styled(Link)`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  &:nth-child(even) {
+  &:nth-child(5) {
     margin-bottom: 50px;
   }
   & > svg {
