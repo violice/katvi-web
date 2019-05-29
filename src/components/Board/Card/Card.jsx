@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const Card = () => (
+const Card = ({ card }) => (
   <Container>
-  Card
+    {card.name}
   </Container>
 );
+
+Card.propTypes = {
+  card: PropTypes.object.isRequired,
+};
 
 export default Card;

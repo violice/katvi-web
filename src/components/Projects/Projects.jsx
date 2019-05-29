@@ -8,14 +8,14 @@ import { AddProject } from './AddProject';
 import { Container, Header, Content } from './styles';
 
 const Projects = ({
-  projects, loading, createProject, push,
+  projects, loading, addProject, push,
 }) => {
   const [opened, setOpened] = useState(false);
 
   const AddProjectProps = {
     opened,
     loading,
-    createProject,
+    addProject,
     onClose: () => setOpened(false),
   };
 
@@ -36,7 +36,7 @@ const Projects = ({
 Projects.propTypes = {
   projects: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  createProject: PropTypes.func.isRequired,
+  addProject: PropTypes.func.isRequired,
   push: PropTypes.func.isRequired,
 };
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { KeyboardArrowDown } from 'rmdi';
 
 import {
-  Container, Value, Menu, MenuItem,
+  Container, Value, Label, Menu, MenuItem,
 } from './styles';
 
 const renderIcon = Icon => <Icon />;
@@ -28,7 +28,7 @@ const Select = ({
     <Container>
       <Value onClick={() => setOpened(true)}>
         {iconKey && renderIcon(value[iconKey])}
-        {labelKey ? value[labelKey] : value}
+        <Label>{labelKey ? value[labelKey] : value}</Label>
         <KeyboardArrowDown color="#7D4CDB" />
       </Value>
       {opened
@@ -36,7 +36,14 @@ const Select = ({
       <Menu ref={menuRef}>
         {items.map(item => (
           <MenuItem
-            onClick={() => onSelect(valueKey ? item[valueKey] : item, item)}
+            onClick={() => {
+              if (valueKey
+                ? item[valueKey] !== value[valueKey]
+                : item !== value
+              ) {
+                onSelect(valueKey ? item[valueKey] : item, item);
+              }
+            }}
             key={valueKey ? item[valueKey] : item}
           >
             {iconKey && renderIcon(item[iconKey])}

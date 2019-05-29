@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useApi } from 'utils';
@@ -11,14 +11,12 @@ const SecureContainer = ({ history: { replace }, location: { pathname }, childre
     replace('/');
   }
 
-  const [{ loading, data }] = useApi({ url: '/user/current' }, { loading: true });
   const [state, setState] = useStore();
 
-  useEffect(() => {
-    if (data) {
-      setState({ ...state, user: data });
-    }
-  }, [loading]);
+  const [{ loading, data }] = useApi({
+    url: '/user/current',
+    onSuccess: user => setState({ ...state, user }),
+  }, { loading: true });
 
   if (loading) {
     return <LoadingIndicator />;

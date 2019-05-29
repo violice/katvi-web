@@ -43,13 +43,17 @@ const request = (dispatch, initParams) => async (requestParams) => {
     url,
     queryParams,
     body,
+    onSuccess,
+    onError,
   } = params;
 
   try {
     const data = await Api[method](url, body || queryParams);
 
+    if (onSuccess) onSuccess(data);
     dispatch({ type: 'REQUEST_SUCCESS', payload: data });
   } catch (error) {
+    if (onError) onSuccess(error);
     dispatch({ type: 'REQUEST_ERROR', payload: error });
   }
 };
@@ -61,6 +65,7 @@ const useApi = (initParams, initState = {}) => {
     data: initState.data || DEFAULT_STATE.data,
   });
 
+  // FIXME: HACK...
   const refresh = JSON.stringify(initParams);
 
   useEffect(() => {

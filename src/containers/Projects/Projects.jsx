@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useApi } from 'utils';
@@ -7,20 +7,22 @@ import { LoadingIndicator } from 'components/Common';
 
 const ProjectsContainer = ({ history: { push } }) => {
   const [{ data: projects, loading: loadingProjects }] = useApi({ url: 'project' }, { loading: true });
-  const [{ data: project, loading }, request] = useApi();
+  const [{ loading }, request] = useApi();
 
-  useEffect(() => {
-    if (project) {
-      push(`/secure/projects/${project.id}/board`);
-    }
-  }, [loading]);
+  const addProject = body => request({
+    method: 'post',
+    url: 'project',
+    body,
+    onSuccess: project => push(`/secure/projects/${project.id}/board`),
+  });
+
 
   if (loadingProjects) return <LoadingIndicator />;
 
   const ProjectsProps = {
     projects,
     loading,
-    createProject: body => request({ method: 'post', url: 'project', body }),
+    addProject,
     push,
   };
 

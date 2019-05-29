@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Please enter a name'),
+  name: Yup.string().required('Пожалуйста введите название'),
   description: Yup.string(),
 });
 

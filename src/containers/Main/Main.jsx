@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { Main } from 'components';
 import { useApi } from 'utils';
 import { useStore } from 'store';
@@ -8,6 +9,7 @@ const MainContainer = ({ location: { pathname }, history: { replace } }) => {
   const [{ loading, data }, request] = useApi();
   const [state, setState] = useStore();
 
+  // TODO: replace with onSuccess
   useEffect(() => {
     if (data) {
       setState({ ...state, user: data });

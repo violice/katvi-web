@@ -1,24 +1,68 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import QueryString from 'query-string';
+
 import { useStore } from 'store';
 import { useApi } from 'utils';
 import { Board } from 'components';
 import { LoadingIndicator } from 'components/Common';
 
-const BoardContainer = () => {
+const BoardContainer = ({ history: { push, goBack }, location: { search } }) => {
   const [state, setState] = useStore();
-  const [{ data, loading }, request] = useApi({ url: `board/${state.board.id}` }, { loading: true });
+  const { board } = state;
 
-  const editBoard = body => request({ method: 'patch', url: `board/${state.board.id}`, body });
+  const [{ loading: boardLoading }, boardRequest] = useApi({
+    url: `board/${board.id}`,
+    onSuccess: boardData => setState({ ...state, board: boardData }),
+  }, { loading: true });
 
-  useEffect(() => {
-    if (!loading) {
-      setState({ ...state, board: data });
-    }
-  }, [loading]);
+  const editBoard = body => boardRequest({ method: 'patch', url: `board/${state.board.id}`, body });
 
-  if (loading) return <LoadingIndicator />;
+  // TODO: fix board select
+  // useEffect(() => {
+  //   boardRequest({
+  //     url: `board/${board.id}`,
+  //     onSuccess: boardData => setState({ ...state, board: boardData }),
+  //   });
+  // }, [board.id]);
 
-  return <Board board={data} editBoard={editBoard} />;
+  const [{ loading: cardLoading }, cardRequest] = useApi();
+
+  const addCard = card => cardRequest({
+    method: 'post',
+    url: '/card',
+    body: {
+      ...card,
+      priority: card.priority.value,
+      type: card.type.value,
+      column: state.board.columns[0],
+    },
+    onSuccess: (cardData) => {
+      const column = board.columns.find(col => col.id === cardData.column.id);
+      column.cards.push(cardData);
+      setState({ ...state, board });
+      goBack();
+    },
+  });
+
+  if (boardLoading) return <LoadingIndicator />;
+
+  const BoardProps = {
+    board,
+    cardLoading,
+    searchParams: QueryString.parse(search),
+    editBoard,
+    addCard,
+    push,
+    goBack,
+  };
+
+  return <Board {...BoardProps} />;
+};
+
+BoardContainer.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default React.memo(BoardContainer);

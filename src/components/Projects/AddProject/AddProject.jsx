@@ -10,14 +10,14 @@ import {
 import { Container, Footer } from './styles';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Please enter a name'),
+  name: Yup.string().required('Пожалуйста введите название'),
   description: Yup.string(),
-  boardName: Yup.string().required('Please enter a board name'),
+  boardName: Yup.string().required('Пожалуйста введите название доски'),
   boardDescription: Yup.string(),
 });
 
 const AddProject = ({
-  opened, loading, createProject, onClose,
+  opened, loading, addProject, onClose,
 }) => (
   <Formik
     validationSchema={validationSchema}
@@ -27,7 +27,7 @@ const AddProject = ({
       boardName: 'Стандартная доска',
       boardDescription: '',
     }}
-    onSubmit={createProject}
+    onSubmit={addProject}
     render={({ submitForm, resetForm }) => (
       <Modal
         header="Добавить проект"
@@ -79,7 +79,7 @@ const AddProject = ({
 AddProject.propTypes = {
   opened: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  createProject: PropTypes.func.isRequired,
+  addProject: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

@@ -15,10 +15,10 @@ import { Container, Header } from './styles';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Please enter a valid email')
-    .required('Please enter an email'),
+    .email('Пожалуйста введите валидный адрес электронной почты')
+    .required('Пожалуйста введите адрес электронной почты'),
   password: Yup.string()
-    .required('Please enter a password'),
+    .required('Пожалуйста введите пароль'),
 });
 
 const LoginModal = ({

@@ -6,19 +6,23 @@ const Container = styled.div`
 
 const Value = styled.div`
   padding: 10px;
-  font-weight: 500;
-  font-size: 18px;
   display: flex;
   align-items: center;
   &:hover {
     cursor: pointer;
   }
   & > svg:first-child {
-    margin-right: 15px;
+    margin-right: 10px;
   }
   & > svg:last-child {
-    margin: 0 0 0 auto ;
+    margin: 0 0 0 auto;
   }
+`;
+
+const Label = styled.span`
+  font-weight: 500;
+  font-size: 18px;
+  margin-right: 15px;
 `;
 
 const Menu = styled.div`
@@ -27,6 +31,7 @@ const Menu = styled.div`
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0,0,0,.15);
   border-radius: 5px;
+  z-index: 1;
 `;
 
 const MenuItem = styled.div`
@@ -35,6 +40,7 @@ const MenuItem = styled.div`
   align-items: center;
   & > svg:first-child {
     margin-right: 15px;
+    min-width: 24px;
   }
   &:hover {
     cursor: pointer;
@@ -43,5 +49,5 @@ const MenuItem = styled.div`
 `;
 
 export {
-  Container, Value, Menu, MenuItem,
+  Container, Value, Label, Menu, MenuItem,
 };

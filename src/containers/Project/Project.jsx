@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
@@ -12,19 +12,21 @@ const ProjectContainer = ({
   location: { pathname },
   match: { params: { id } },
 }) => {
-  const [{ data: projects, loading: projectsLoading }] = useApi({ url: 'project' }, { loading: true });
-  const [{ data: project, loading: projectLoading }] = useApi({ url: `project/${id}` }, { loading: true });
-
   const [state, setState] = useStore();
 
-  useEffect(() => {
-    if (project) {
-      setState({ ...state, project, board: project.boards[0] });
-    }
-  }, [projectLoading]);
+  const [{ data: projects, loading: projectsLoading }] = useApi({ url: 'project' }, { loading: true });
+  const [{ data: project, loading: projectLoading }] = useApi({
+    url: `project/${id}`,
+    onSuccess: (projectData) => {
+      if (projectData) {
+        setState({ ...state, project: projectData, board: projectData.boards[0] });
+      }
+    },
+  }, { loading: true });
+
 
   const onBoardChange = board => setState({ ...state, board });
-  const { board } = state;
+  const { board = {} } = state;
 
   if (projectsLoading || projectLoading) return <LoadingIndicator />;
 

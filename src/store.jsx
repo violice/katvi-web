@@ -6,6 +6,7 @@ const StoreContext = React.createContext();
 const StoreProvider = ({ children, initState }) => {
   const [state, setState] = useState(initState);
 
+  // FIXME: HACK...
   const refresh = JSON.stringify(state);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const StoreProvider = ({ children, initState }) => {
       if (storeKeys.length > 0) {
         console.group('%cStore Updated', 'color:#00873D');
         storeKeys.forEach((key) => {
-          console.log(key, state[key]);
+          console.log(`%c${key}`, 'font-weight:bold', state[key]);
         });
         console.groupEnd();
       }

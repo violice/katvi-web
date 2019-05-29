@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { General } from 'components/ProjectSettings';
 import { useApi } from 'utils';
 
 const GeneralContainer = ({ project, onProjectChange }) => {
-  const [{ loading, data }, request] = useApi();
+  const [{ loading }, request] = useApi();
 
-  const editProject = body => request({ method: 'patch', url: `/project/${project.id}`, body });
-
-  useEffect(() => {
-    if (!loading) {
-      onProjectChange({ ...project, ...data });
-    }
-  }, [loading]);
+  const editProject = body => request({
+    method: 'patch',
+    url: `/project/${project.id}`,
+    body,
+    onSuccess: editedProject => onProjectChange({ ...project, ...editedProject }),
+  });
 
 
   const GeneralProps = {
