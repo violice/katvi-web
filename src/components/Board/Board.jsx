@@ -6,6 +6,7 @@ import { Button } from 'components/Common';
 
 import { AddCard } from './AddCard';
 import { Card } from './Card';
+import { EditCard } from './EditCard';
 import { Settings } from './Settings';
 import {
   Container,
@@ -17,13 +18,15 @@ import {
 } from './styles';
 
 const Board = ({
+  searchParams,
   board,
   cardLoading,
-  searchParams,
-  editBoard,
-  addCard,
+  card,
   push,
   goBack,
+  editBoard,
+  addCard,
+  editCard,
 }) => (
   <Container>
     <Header onClick={() => push('?modal=settings')}>
@@ -41,8 +44,8 @@ const Board = ({
             <span>{column.cards.length}</span>
           </ColumnHeader>
           <ColumnContent>
-            {column.cards.map(card => (
-              <Card key={card.id} card={card} />
+            {column.cards.map(c => (
+              <Card key={c.id} card={c} onClick={() => push(`?modal=editCard&card=${c.id}`)} />
             ))}
           </ColumnContent>
         </Column>
@@ -60,17 +63,31 @@ const Board = ({
       onClose={goBack}
       editBoard={editBoard}
     />
+    <EditCard
+      opened={searchParams.modal === 'editCard'}
+      columns={board.columns}
+      loading={cardLoading}
+      card={card}
+      onClose={goBack}
+      editCard={editCard}
+    />
   </Container>
 );
 
 Board.propTypes = {
+  searchParams: PropTypes.object.isRequired,
   board: PropTypes.object.isRequired,
   cardLoading: PropTypes.bool.isRequired,
-  searchParams: PropTypes.object.isRequired,
-  editBoard: PropTypes.func.isRequired,
-  addCard: PropTypes.func.isRequired,
+  card: PropTypes.object,
   push: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
+  editBoard: PropTypes.func.isRequired,
+  addCard: PropTypes.func.isRequired,
+  editCard: PropTypes.func.isRequired,
+};
+
+Board.defaultProps = {
+  card: {},
 };
 
 export default Board;
