@@ -31,7 +31,7 @@ const Report = () => (
     </HeaderRow>
     <BodyRow>
       <BodyCell>
-        0
+        2
       </BodyCell>
       <BodyCell>
         4

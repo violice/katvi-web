@@ -1,9 +1,17 @@
 import React from 'react';
 
+import { useApi } from 'utils';
 import { Dashboard } from 'components';
+import { LoadingIndicator } from 'components/Common';
 
-const ProjectContainer = () => (
-  <Dashboard />
-);
+const DashboardContainer = () => {
+  const [{ loading, data }] = useApi({ url: 'card/my' }, { loading: true });
 
-export default React.memo(ProjectContainer);
+  if (loading) return <LoadingIndicator />;
+
+  return (
+    <Dashboard data={data} />
+  );
+};
+
+export default React.memo(DashboardContainer);

@@ -1,8 +1,7 @@
 import React from 'react';
-import {
-  CheckCircle,
-  ArrowDownward,
-} from 'rmdi';
+import PropTypes from 'prop-types';
+
+import { TYPES, PRIORITIES } from 'components/Board/constants';
 
 import {
   Container,
@@ -13,7 +12,7 @@ import {
   BodyCell,
 } from './styles';
 
-const MyCardsWidget = () => (
+const MyCardsWidget = ({ data }) => (
   <Container>
     <Header>
       Мои Карточки
@@ -33,20 +32,27 @@ const MyCardsWidget = () => (
         Приоритет
       </HeaderCell>
     </HeaderRow>
-    <BodyRow>
-      <BodyCell>
-        <CheckCircle color="#00C781" />
-      </BodyCell>
-      <BodyCell>
-        Раздел 1 - Разработка ПО
-      </BodyCell>
-      <BodyCell />
-      <BodyCell>
-        <ArrowDownward color="#FFAA15" />
-      </BodyCell>
-    </BodyRow>
-
+    {data.map(item => (
+      <BodyRow>
+        <BodyCell>
+          {TYPES.find(t => t.value === item.type).icon()}
+        </BodyCell>
+        <BodyCell>
+          {item.name}
+        </BodyCell>
+        <BodyCell>
+          {item.description}
+        </BodyCell>
+        <BodyCell>
+          {PRIORITIES.find(p => p.value === item.priority).icon()}
+        </BodyCell>
+      </BodyRow>
+    ))}
   </Container>
 );
+
+MyCardsWidget.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default MyCardsWidget;
