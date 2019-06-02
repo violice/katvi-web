@@ -12,16 +12,27 @@ import {
 import { Name } from './Name';
 import { Description } from './Description';
 import { PRIORITIES } from '../constants';
-import { Container, Left, Right } from './styles';
+import {
+  Container,
+  Left,
+  Right,
+  Field,
+  LargeLabel,
+  Label,
+  Tag,
+  Author,
+  Member,
+  Date,
+} from './styles';
 
 const EditCard = ({
   opened,
   columns,
   loading,
   card,
+  editCard,
   onClose,
 }) => (
-
   <Modal
     opened={opened}
     onClose={() => {
@@ -34,41 +45,64 @@ const EditCard = ({
 
         if (!card) return 'Card not found';
 
-        console.log(columns);
-
         return (
           <>
             <Left>
-              <Name value={card.name} onChange={console.log} />
-              <Description value={card.description} onChange={console.log} />
-              {card.description}
+              <Name
+                value={card.name}
+                onChange={name => editCard({ ...card, name })}
+              />
+              <LargeLabel>Описание</LargeLabel>
+              <Description
+                value={card.description}
+                onChange={description => editCard({ ...card, description })}
+              />
             </Left>
             <Right>
-              <Select
-                items={columns}
-                labelKey="name"
-                valueKey="id"
-                value={card.column}
-                onSelect={console.log}
-              />
-              <Select
-                items={PRIORITIES}
-                labelKey="label"
-                valueKey="value"
-                iconKey="icon"
-                value={PRIORITIES.find(p => p.value === card.priority)}
-                onSelect={console.log}
-              />
-              Tags
-              <br />
-              Creator
-              {card.user.email}
-              <br />
-              Members
-              <br />
-              {format(card.createdAt, 'MMMM D, YYYY, HH:mm', { locale: ruLocale })}
-              <br />
-              {format(card.updatedAt, 'MMMM D, YYYY, HH:mm', { locale: ruLocale })}
+              <Field>
+                <Label>Статус</Label>
+                <Select
+                  items={columns}
+                  labelKey="name"
+                  valueKey="id"
+                  value={card.column}
+                  onSelect={column => editCard({ ...card, column })}
+                />
+              </Field>
+              <Field>
+                <Label>Приоритет</Label>
+                <Select
+                  items={PRIORITIES}
+                  labelKey="label"
+                  valueKey="value"
+                  iconKey="icon"
+                  value={PRIORITIES.find(p => p.value === card.priority)}
+                  onSelect={priority => editCard({ ...card, priority })}
+                />
+              </Field>
+              <Field>
+                <Label>Теги</Label>
+                <Tag>Документ</Tag>
+              </Field>
+              <Field>
+                <Label>Создатель</Label>
+                <Author>
+                  <Member />
+                  {card.user && card.user.email}
+                </Author>
+              </Field>
+              <Field>
+                <Label>Участники</Label>
+                <Member />
+                <Member />
+                <Member />
+              </Field>
+              <Date>
+                {`Создана ${format(card.createdAt, 'MMMM D, YYYY, HH:mm', { locale: ruLocale })}`}
+              </Date>
+              <Date>
+                {`Обновлена ${format(card.updatedAt, 'MMMM D, YYYY, HH:mm', { locale: ruLocale })}`}
+              </Date>
             </Right>
           </>
         );
@@ -82,6 +116,7 @@ EditCard.propTypes = {
   columns: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   card: PropTypes.object,
+  editCard: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

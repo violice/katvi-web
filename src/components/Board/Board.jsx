@@ -68,8 +68,8 @@ const Board = ({
       columns={board.columns}
       loading={cardLoading}
       card={card}
-      onClose={goBack}
       editCard={editCard}
+      onClose={goBack}
     />
   </Container>
 );

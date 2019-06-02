@@ -15,6 +15,7 @@ const BaseInput = styled.textarea`
   border-bottom: 3px solid #efefef;
   outline-style: none;
   margin-bottom: 5px;
+  resize: none;
 
   ${(props) => {
     switch (props.size) {

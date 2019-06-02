@@ -5,20 +5,21 @@ import { Check, Close } from 'rmdi';
 
 import { Input } from 'components/Common';
 
-const Label = styled.div`
+const View = styled.div`
   font-weight: 400;
   font-size: 24px;
   padding: 5px 10px;
-  margin-bottom: 8px;
+  margin-bottom: 28px;
   border-radius: 5px;
   &:hover {
     background-color: #f2f2f2;
   }
 `;
 
-const Value = styled.div`
+const Edit = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
   & > div {
     flex: 1;
   }
@@ -37,11 +38,11 @@ const Name = ({ value, onChange }) => {
   const [mode, setMode] = useState('view');
   const [name, setName] = useState(value);
   if (mode === 'view') {
-    return <Label onClick={() => setMode('edit')}>{name}</Label>;
+    return <View onClick={() => setMode('edit')}>{name}</View>;
   }
 
   return (
-    <Value>
+    <Edit>
       <Input value={name} onChange={({ target: { value: newName } }) => setName(newName)} />
       <Check size={24} onClick={() => onChange(name)} />
       <Close
@@ -51,7 +52,7 @@ const Name = ({ value, onChange }) => {
           setMode('view');
         }}
       />
-    </Value>
+    </Edit>
   );
 };
 

@@ -30,7 +30,7 @@ const Card = ({ card, onClick }) => (
             return null;
         }
       })()}
-      <Tag>Письмо</Tag>
+      <Tag>Документ</Tag>
       <Member />
     </Bottom>
   </Container>

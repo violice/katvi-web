@@ -3,10 +3,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import {
   Board,
+  Dashboard,
   Main,
   Project,
   Projects,
   ProjectSettings,
+  Reports,
   Secure,
 } from 'containers';
 
@@ -21,7 +23,7 @@ const App = () => (
         <Secure {...secureRouteProps}>
           <Switch>
             <Redirect exact from="/secure" to="/secure/dashboard" replace />
-            <Route path="/secure/dashboard" render={() => 'Dashboard'} />
+            <Route path="/secure/dashboard" component={Dashboard} />
             <Redirect exact from="/secure/projects/:id" to="/secure/projects/:id/board" replace />
             <Route
               path="/secure/projects/:id"
@@ -30,7 +32,7 @@ const App = () => (
                   <Switch>
                     <Route path="/secure/projects/:id/settings" component={ProjectSettings} />
                     <Route path="/secure/projects/:id/board" component={Board} />
-                    <Route path="/secure/projects/:id/reports" render={() => 'Reports'} />
+                    <Route path="/secure/projects/:id/reports" component={Reports} />
                     <Route path="/secure/projects/:id/docs" render={() => 'Docs'} />
                     <Redirect to="/not-found" replace />
                   </Switch>

@@ -1,7 +1,9 @@
 export { Board } from './Board';
+export { Dashboard } from './Dashboard';
 export { Main } from './Main';
 export { NotFound } from './NotFound';
 export { Project } from './Project';
 export { Projects } from './Projects';
 export { ProjectSettings } from './ProjectSettings';
+export { Reports } from './Reports';
 export { Secure } from './Secure';

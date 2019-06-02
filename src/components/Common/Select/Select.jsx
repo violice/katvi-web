@@ -9,7 +9,7 @@ import {
 const renderIcon = Icon => <Icon />;
 
 const Select = ({
-  items, value, valueKey, labelKey, iconKey, onSelect,
+  items, value, valueKey, labelKey, iconKey, onSelect, className,
 }) => {
   const menuRef = useRef(null);
   const [opened, setOpened] = useState(false);
@@ -25,7 +25,7 @@ const Select = ({
     };
   }, [opened]);
   return (
-    <Container>
+    <Container className={className}>
       <Value onClick={() => setOpened(true)}>
         {iconKey && renderIcon(value[iconKey])}
         <Label>{labelKey ? value[labelKey] : value}</Label>

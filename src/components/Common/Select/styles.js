@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative;
+  background: #f8f8f8;
+  border-radius: 5px;
 `;
 
 const Value = styled.div`
