@@ -15,56 +15,7 @@ const Header = styled.div`
   margin-bottom: 30px;
 `;
 
-const HeaderRow = styled.div`
-  display: flex;
-  font-size: 16px;
-  font-weight: 500;
-  height: 32px;
-  line-height: 32px;
-  border-bottom: 2px solid #f2f2f2;
-  & > div {
-    min-width: 50px;
-    margin-right: 10px;
-    &:nth-child(2) {
-      flex: 0.5;
-    }
-    &:nth-child(3) {
-      flex: 1;
-    }
-  }
-`;
-
-const HeaderCell = styled.div``;
-
-const BodyRow = styled.div`
-  display: flex;
-  & > div {
-    min-width: 50px;
-    margin-right: 10px;
-    &:nth-child(2) {
-      flex: 0.5;
-    }
-    &:nth-child(3) {
-      flex: 1;
-    }
-  }
-`;
-
-const BodyCell = styled.div`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 4px 0px;
-  box-sizing: border-box;
-  height: 32px;
-  line-height: 24px;
-`;
-
 export {
   Container,
   Header,
-  HeaderRow,
-  HeaderCell,
-  BodyRow,
-  BodyCell,
 };

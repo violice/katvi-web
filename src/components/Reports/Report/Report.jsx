@@ -1,50 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Table } from 'components/Common';
 
 import {
   Container,
   Header,
-  HeaderRow,
-  HeaderCell,
-  BodyRow,
-  BodyCell,
 } from './styles';
 
-const Report = () => (
+const Report = ({ name, columns, data }) => (
   <Container>
     <Header>
-      Карточки
+      {name}
     </Header>
 
-    <HeaderRow>
-      <HeaderCell>
-        Задачи
-      </HeaderCell>
-      <HeaderCell>
-        В процессе
-      </HeaderCell>
-      <HeaderCell>
-        Готово
-      </HeaderCell>
-      <HeaderCell>
-        Всего
-      </HeaderCell>
-    </HeaderRow>
-    <BodyRow>
-      <BodyCell>
-        2
-      </BodyCell>
-      <BodyCell>
-        4
-      </BodyCell>
-      <BodyCell>
-        1
-      </BodyCell>
-      <BodyCell>
-        5
-      </BodyCell>
-    </BodyRow>
-
+    <Table
+      columns={columns}
+      data={data}
+    />
   </Container>
 );
+
+Report.propTypes = {
+  name: PropTypes.string.isRequired,
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+};
 
 export default Report;

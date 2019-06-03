@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Table } from 'components/Common';
 import { TYPES, PRIORITIES } from 'components/Board/constants';
 
 import {
   Container,
   Header,
-  HeaderRow,
-  HeaderCell,
-  BodyRow,
-  BodyCell,
 } from './styles';
 
 const MyCardsWidget = ({ data }) => (
@@ -18,36 +15,34 @@ const MyCardsWidget = ({ data }) => (
       Мои Карточки
     </Header>
 
-    <HeaderRow>
-      <HeaderCell>
-        Тип
-      </HeaderCell>
-      <HeaderCell>
-        Название
-      </HeaderCell>
-      <HeaderCell>
-        Описание
-      </HeaderCell>
-      <HeaderCell>
-        Приоритет
-      </HeaderCell>
-    </HeaderRow>
-    {data.map(item => (
-      <BodyRow>
-        <BodyCell>
-          {TYPES.find(t => t.value === item.type).icon()}
-        </BodyCell>
-        <BodyCell>
-          {item.name}
-        </BodyCell>
-        <BodyCell>
-          {item.description}
-        </BodyCell>
-        <BodyCell>
-          {PRIORITIES.find(p => p.value === item.priority).icon()}
-        </BodyCell>
-      </BodyRow>
-    ))}
+    <Table
+      columns={[
+        {
+          header: 'Тип',
+          field: 'type',
+          render: value => TYPES.find(t => t.value === value).icon(),
+          align: 'center',
+          width: '50px',
+        },
+        {
+          header: 'Название',
+          field: 'name',
+        },
+        {
+          header: 'Статус',
+          field: 'column.name',
+          width: '150px',
+        },
+        {
+          header: 'Приоритет',
+          field: 'priority',
+          render: value => PRIORITIES.find(p => p.value === value).icon(),
+          align: 'center',
+          width: '150px',
+        },
+      ]}
+      data={data}
+    />
   </Container>
 );
 
