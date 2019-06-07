@@ -9,8 +9,6 @@ const DashboardContainer = () => {
 
   if (loading) return <LoadingIndicator />;
 
-  console.log(data);
-
   return (
     <Dashboard data={data} />
   );
