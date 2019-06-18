@@ -11,6 +11,7 @@ const View = styled.div`
   margin-bottom: 28px;
   border-radius: 5px;
   white-space: pre-line;
+  min-height: 28px;
   &:hover {
     background-color: #f2f2f2;
   }

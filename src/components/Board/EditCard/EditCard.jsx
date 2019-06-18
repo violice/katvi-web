@@ -66,7 +66,7 @@ const EditCard = ({
                   labelKey="name"
                   valueKey="id"
                   value={card.column}
-                  onSelect={column => editCard({ ...card, column })}
+                  onSelect={(_, column) => editCard({ ...card, column })}
                 />
               </Field>
               <Field>
@@ -77,7 +77,7 @@ const EditCard = ({
                   valueKey="value"
                   iconKey="icon"
                   value={PRIORITIES.find(p => p.value === card.priority)}
-                  onSelect={priority => editCard({ ...card, priority })}
+                  onSelect={(_, priority) => editCard({ ...card, priority })}
                 />
               </Field>
               <Field>

@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import {
   Board,
   Dashboard,
+  Docs,
   Main,
   Project,
   Projects,
@@ -33,7 +34,7 @@ const App = () => (
                     <Route path="/secure/projects/:id/settings" component={ProjectSettings} />
                     <Route path="/secure/projects/:id/board" component={Board} />
                     <Route path="/secure/projects/:id/reports" component={Reports} />
-                    <Route path="/secure/projects/:id/docs" render={() => 'Docs'} />
+                    <Route path="/secure/projects/:id/docs" component={Docs} />
                     <Redirect to="/not-found" replace />
                   </Switch>
                 </Project>

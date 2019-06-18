@@ -21,7 +21,13 @@ const BoardContainer = ({ history: { push, goBack }, location: { search } }) => 
   const editBoard = body => boardRequest({
     method: 'patch',
     url: `board/${state.board.id}`,
-    body,
+    body: {
+      ...body,
+      columns: body.columns.map((col, order) => ({
+        ...col,
+        settings: { order },
+      })),
+    },
     onSuccess: (boardData) => {
       goBack();
       setState({ ...state, board: boardData });
@@ -63,7 +69,18 @@ const BoardContainer = ({ history: { push, goBack }, location: { search } }) => 
     },
   });
 
-  const editCard = card => console.log(card);
+  const editCard = card => cardRequest({
+    method: 'patch',
+    url: `/card/${card.id}`,
+    body: {
+      ...card,
+      priority: card.priority.value,
+      column: card.column.id,
+    },
+    onSuccess: () => {
+      boardRequest();
+    },
+  });
 
   if (boardLoading) return <LoadingIndicator />;
 

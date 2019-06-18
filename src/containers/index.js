@@ -1,6 +1,7 @@
 export { default as App } from './App';
 export { default as Board } from './Board';
 export { default as Dashboard } from './Dashboard';
+export { default as Docs } from './Docs';
 export { default as Main } from './Main';
 export { default as Project } from './Project';
 export { default as Projects } from './Projects';

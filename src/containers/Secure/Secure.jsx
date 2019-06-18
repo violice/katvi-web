@@ -13,13 +13,20 @@ const SecureContainer = ({ history: { replace }, location: { pathname }, childre
 
   const [state, setState] = useStore();
 
-  const [{ loading, data }] = useApi({
+  const [{ loading, data, error }] = useApi({
     url: '/user/current',
     onSuccess: user => setState({ ...state, user }),
   }, { loading: true });
 
   if (loading) {
     return <LoadingIndicator />;
+  }
+
+  if (error) {
+    document.cookie.split(';').forEach((c) => {
+      document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+    });
+    replace('/login');
   }
 
   return (

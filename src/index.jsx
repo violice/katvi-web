@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
 import theme, { GlobalStyle, ThemeLogger } from 'theme';
+import 'react-quill/dist/quill.snow.css';
 import 'fonts.css';
 
 import { App } from 'containers';

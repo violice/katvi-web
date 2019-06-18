@@ -37,19 +37,21 @@ const Board = ({
       <Button size="small" onClick={() => push('?modal=addCard')}>Добавить карточку</Button>
     </Header>
     <Content>
-      {board.columns.map(column => (
-        <Column key={column.id}>
-          <ColumnHeader>
-            <span>{column.name}</span>
-            <span>{column.cards.length}</span>
-          </ColumnHeader>
-          <ColumnContent>
-            {column.cards.map(c => (
-              <Card key={c.id} card={c} onClick={() => push(`?modal=editCard&card=${c.id}`)} />
-            ))}
-          </ColumnContent>
-        </Column>
-      ))}
+      {board.columns
+        .sort((x, y) => (x.settings && y.settings && x.settings.order > y.settings.order ? 1 : -1))
+        .map(column => (
+          <Column key={column.id}>
+            <ColumnHeader>
+              <span>{column.name}</span>
+              <span>{column.cards.length}</span>
+            </ColumnHeader>
+            <ColumnContent>
+              {column.cards.map(c => (
+                <Card key={c.id} card={c} onClick={() => push(`?modal=editCard&card=${c.id}`)} />
+              ))}
+            </ColumnContent>
+          </Column>
+        ))}
     </Content>
     <AddCard
       opened={searchParams.modal === 'addCard'}

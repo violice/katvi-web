@@ -75,8 +75,36 @@ const Settings = ({
                     <Column key={`col-${index}`}>
                       <span>{col.name}</span>
                       <Edit />
-                      <ArrowUpward />
-                      <ArrowDownward />
+                      <ArrowUpward onClick={() => {
+                        if (index > 0) {
+                          const newValue = [...value];
+                          const temp = newValue[index];
+                          newValue[index] = newValue[index - 1];
+                          newValue[index - 1] = temp;
+                          onChange({
+                            target: {
+                              value: newValue,
+                              name: 'columns',
+                            },
+                          });
+                        }
+                      }}
+                      />
+                      <ArrowDownward onClick={() => {
+                        if (index < value.length - 1) {
+                          const newValue = [...value];
+                          const temp = newValue[index];
+                          newValue[index] = newValue[index + 1];
+                          newValue[index + 1] = temp;
+                          onChange({
+                            target: {
+                              value: newValue,
+                              name: 'columns',
+                            },
+                          });
+                        }
+                      }}
+                      />
                       <Close onClick={() => onChange({
                         target: {
                           value: value.filter((_, i) => i !== index),
