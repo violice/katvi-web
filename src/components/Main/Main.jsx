@@ -80,7 +80,7 @@ const Main = ({
           <Link to="/">
             <Logo />
           </Link>
-          {document.cookie.includes('katvi-token')
+          {localStorage.getItem('token')
             ? <StyledLink to="/secure/dashboard">Рабочий стол</StyledLink>
             : <StyledLink to="/login">Войти / Зарегистироваться</StyledLink>
           }

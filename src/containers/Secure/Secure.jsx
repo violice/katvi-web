@@ -7,7 +7,8 @@ import { Secure } from 'components';
 import { LoadingIndicator } from 'components/Common';
 
 const SecureContainer = ({ history: { replace }, location: { pathname }, children }) => {
-  if (!document.cookie.includes('katvi-token')) {
+  const token = localStorage.getItem('token');
+  if (!token) {
     replace('/');
   }
 
@@ -23,9 +24,7 @@ const SecureContainer = ({ history: { replace }, location: { pathname }, childre
   }
 
   if (error) {
-    document.cookie.split(';').forEach((c) => {
-      document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-    });
+    localStorage.removeItem('token');
     replace('/login');
   }
 

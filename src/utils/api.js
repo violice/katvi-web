@@ -15,9 +15,23 @@ const createStringParams = (params = {}) => {
   return `?${stringParams}`;
 };
 
+const createConfig = () => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
+
 const throwError = (response) => {
   if (response) {
     const { status, data: { error, message } } = response;
+    if (status === 403) {
+      localStorage.removeItem('token');
+      window.location.pathname = '/login';
+    }
     const err = { code: status, message: error || message };
     throw err;
   }
@@ -28,7 +42,7 @@ const throwError = (response) => {
 export default {
   get: async (url, params) => {
     try {
-      const { data } = await AxiosInstance.get(`${url}${createStringParams(params)}`);
+      const { data } = await AxiosInstance.get(`${url}${createStringParams(params)}`, createConfig());
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -36,7 +50,7 @@ export default {
   },
   post: async (url, body) => {
     try {
-      const { data } = await AxiosInstance.post(url, body);
+      const { data } = await AxiosInstance.post(url, body, createConfig());
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -44,7 +58,7 @@ export default {
   },
   patch: async (url, body) => {
     try {
-      const { data } = await AxiosInstance.patch(url, body);
+      const { data } = await AxiosInstance.patch(url, body, createConfig());
       return data;
     } catch ({ response }) {
       return throwError(response);
@@ -52,7 +66,7 @@ export default {
   },
   delete: async (url) => {
     try {
-      const { data } = await AxiosInstance.delete(url);
+      const { data } = await AxiosInstance.delete(url, createConfig());
       return data;
     } catch ({ response }) {
       return throwError(response);
