@@ -12,7 +12,9 @@ const MainContainer = ({ location: { pathname }, history: { replace } }) => {
   // TODO: replace with onSuccess
   useEffect(() => {
     if (data) {
-      setState({ ...state, user: data });
+      const { user, token } = data;
+      localStorage.setItem('token', token);
+      setState({ ...state, ...user });
       replace('/secure/dashboard');
     }
   }, [loading]);
